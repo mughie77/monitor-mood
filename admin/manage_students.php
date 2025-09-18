@@ -1,17 +1,16 @@
 <?php
-$page_title = 'Manage Students';
+$page_title = 'Kelola Siswa';
 require_once 'templates/header.php';
 
 $feedback = ['type' => '', 'message' => ''];
 
 // --- CUD LOGIC ---
-// Handle Add/Edit Student
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = isset($_POST['user_id']) ? (int)$_POST['user_id'] : null;
     $full_name = sanitize_input($_POST['full_name']);
     $username = sanitize_input($_POST['username']);
     $email = sanitize_input($_POST['email']);
-    $password = $_POST['password']; // Don't sanitize password, it will be hashed
+    $password = $_POST['password'];
 
     $mysqli->begin_transaction();
     try {
@@ -30,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_student = $mysqli->prepare("UPDATE students SET full_name = ? WHERE user_id = ?");
             $stmt_student->bind_param("si", $full_name, $user_id);
             $stmt_student->execute();
-            $feedback = ['type' => 'success', 'message' => 'Student updated successfully!'];
+            $feedback = ['type' => 'success', 'message' => 'Siswa berhasil diperbarui!'];
         } else { // --- CREATE ---
-            if (empty($password)) throw new Exception("Password is required for new users.");
+            if (empty($password)) throw new Exception("Kata sandi diperlukan untuk pengguna baru.");
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $role = 'student';
 
@@ -45,14 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_student = $mysqli->prepare("INSERT INTO students (user_id, full_name) VALUES (?, ?)");
             $stmt_student->bind_param("is", $new_user_id, $full_name);
             $stmt_student->execute();
-            $feedback = ['type' => 'success', 'message' => 'Student added successfully!'];
+            $feedback = ['type' => 'success', 'message' => 'Siswa berhasil ditambahkan!'];
         }
         $mysqli->commit();
     } catch (Exception $e) {
         $mysqli->rollback();
         $feedback = ['type' => 'danger', 'message' => 'Error: ' . $e->getMessage()];
-        if ($mysqli->errno === 1062) { // Duplicate entry
-            $feedback['message'] = 'Username or email already exists.';
+        if ($mysqli->errno === 1062) {
+            $feedback['message'] = 'Nama pengguna atau email sudah ada.';
         }
     }
 }
@@ -63,9 +62,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
     $stmt = $mysqli->prepare("DELETE FROM users WHERE id = ? AND role = 'student'");
     $stmt->bind_param("i", $user_id_to_delete);
     if ($stmt->execute()) {
-        $feedback = ['type' => 'success', 'message' => 'Student deleted successfully!'];
+        $feedback = ['type' => 'success', 'message' => 'Siswa berhasil dihapus!'];
     } else {
-        $feedback = ['type' => 'danger', 'message' => 'Failed to delete student.'];
+        $feedback = ['type' => 'danger', 'message' => 'Gagal menghapus siswa.'];
     }
 }
 
@@ -84,7 +83,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 }
 ?>
 
-<h1 class="mb-4">Manage Students</h1>
+<h1 class="mb-4">Kelola Siswa</h1>
 
 <?php if (!empty($feedback['message'])): ?>
 <div class="alert alert-<?php echo $feedback['type']; ?>"><?php echo $feedback['message']; ?></div>
@@ -93,7 +92,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 <?php if ($is_form_view): // --- ADD/EDIT FORM VIEW --- ?>
 <div class="card">
     <div class="card-header">
-        <h5><?php echo $action === 'edit' ? 'Edit Student' : 'Add New Student'; ?></h5>
+        <h5><?php echo $action === 'edit' ? 'Ubah Siswa' : 'Tambah Siswa Baru'; ?></h5>
     </div>
     <div class="card-body">
         <form action="manage_students.php" method="POST">
@@ -102,11 +101,11 @@ if ($action === 'edit' && isset($_GET['id'])) {
             <?php endif; ?>
 
             <div class="mb-3">
-                <label for="full_name" class="form-label">Full Name</label>
+                <label for="full_name" class="form-label">Nama Lengkap</label>
                 <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo htmlspecialchars($student_data['full_name'] ?? ''); ?>" required>
             </div>
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label for="username" class="form-label">Nama Pengguna</label>
                 <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($student_data['username'] ?? ''); ?>" required>
             </div>
             <div class="mb-3">
@@ -114,28 +113,28 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($student_data['email'] ?? ''); ?>" required>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Kata Sandi</label>
                 <input type="password" class="form-control" id="password" name="password" <?php echo $action === 'add' ? 'required' : ''; ?>>
                 <?php if ($action === 'edit'): ?>
-                    <small class="form-text text-muted">Leave blank to keep the current password.</small>
+                    <small class="form-text text-muted">Biarkan kosong untuk mempertahankan kata sandi saat ini.</small>
                 <?php endif; ?>
             </div>
-            <button type="submit" class="btn btn-primary"><?php echo $action === 'edit' ? 'Update Student' : 'Add Student'; ?></button>
-            <a href="manage_students.php" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary"><?php echo $action === 'edit' ? 'Perbarui Siswa' : 'Tambah Siswa'; ?></button>
+            <a href="manage_students.php" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 </div>
 <?php else: // --- LIST VIEW --- ?>
 <div class="mb-3">
-    <a href="?action=add" class="btn btn-success"><i class="fas fa-plus me-2"></i>Add New Student</a>
+    <a href="?action=add" class="btn btn-success"><i class="fas fa-plus me-2"></i>Tambah Siswa Baru</a>
 </div>
 <div class="card">
-    <div class="card-header">Student List</div>
+    <div class="card-header">Daftar Siswa</div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead>
-                    <tr><th>Full Name</th><th>Username</th><th>Email</th><th>Actions</th></tr>
+                    <tr><th>Nama Lengkap</th><th>Nama Pengguna</th><th>Email</th><th>Aksi</th></tr>
                 </thead>
                 <tbody>
                     <?php
@@ -147,13 +146,13 @@ if ($action === 'edit' && isset($_GET['id'])) {
                                 <td><?php echo htmlspecialchars($student['username']); ?></td>
                                 <td><?php echo htmlspecialchars($student['email']); ?></td>
                                 <td>
-                                    <a href="?action=edit&id=<?php echo $student['id']; ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                    <a href="?action=delete&id=<?php echo $student['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');"><i class="fas fa-trash"></i> Delete</a>
+                                    <a href="?action=edit&id=<?php echo $student['id']; ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Ubah</a>
+                                    <a href="?action=delete&id=<?php echo $student['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin?');"><i class="fas fa-trash"></i> Hapus</a>
                                 </td>
                             </tr>
                         <?php endwhile;
                     else: ?>
-                        <tr><td colspan="4" class="text-center">No students found.</td></tr>
+                        <tr><td colspan="4" class="text-center">Tidak ada siswa yang ditemukan.</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>

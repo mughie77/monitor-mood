@@ -13,11 +13,11 @@ $full_name = $_SESSION['username']; // For admins, username is fine for now.
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? $page_title . ' - Admin' : 'Admin Dashboard'; ?></title>
+    <title><?php echo isset($page_title) ? $page_title . ' - Admin' : 'Dasbor Admin'; ?></title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts: Poppins -->
@@ -29,27 +29,27 @@ $full_name = $_SESSION['username']; // For admins, username is fine for now.
     <!-- Custom Admin CSS -->
     <link rel="stylesheet" href="<?php echo base_url('admin/assets/css/admin_style.css'); ?>">
 </head>
-<body>
+<body style="font-family: 'Poppins', sans-serif;">
 
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-dark border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading text-white">Mood Tracker Admin</div>
+        <div class="sidebar-heading text-white">Admin Pelacak Suasana Hati</div>
         <div class="list-group list-group-flush">
             <a href="<?php echo base_url('admin/index.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
-                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                <i class="fas fa-tachometer-alt me-2"></i>Dasbor
             </a>
             <a href="<?php echo base_url('admin/manage_students.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
-                <i class="fas fa-user-graduate me-2"></i>Manage Students
+                <i class="fas fa-user-graduate me-2"></i>Kelola Siswa
             </a>
             <a href="<?php echo base_url('admin/manage_teachers.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
-                <i class="fas fa-chalkboard-teacher me-2"></i>Manage Teachers
+                <i class="fas fa-chalkboard-teacher me-2"></i>Kelola Guru
             </a>
             <a href="<?php echo base_url('admin/manage_admins.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
-                <i class="fas fa-user-shield me-2"></i>Manage Admins
+                <i class="fas fa-user-shield me-2"></i>Kelola Admin
             </a>
             <a href="<?php echo base_url('logout.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white mt-auto">
-                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                <i class="fas fa-sign-out-alt me-2"></i>Keluar
             </a>
         </div>
     </div>
@@ -60,7 +60,7 @@ $full_name = $_SESSION['username']; // For admins, username is fine for now.
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="container-fluid">
                 <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
-                <div class="ms-auto">Welcome, <?php echo htmlspecialchars($full_name); ?>!</div>
+                <div class="ms-auto">Selamat Datang, <?php echo htmlspecialchars($full_name); ?>!</div>
             </div>
         </nav>
 

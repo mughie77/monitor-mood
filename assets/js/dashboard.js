@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Display error message
                     responseMessage.innerHTML = `
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            ${data.message || 'An unknown error occurred.'}
+                            ${data.message || 'Terjadi kesalahan yang tidak diketahui.'}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>`;
                 }
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error:', error);
                 responseMessage.innerHTML = `
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        A network error occurred. Please try again.
+                        Terjadi kesalahan jaringan. Silakan coba lagi.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>`;
             });

@@ -1,11 +1,10 @@
 <?php
-$page_title = 'Manage Teachers';
+$page_title = 'Kelola Guru';
 require_once 'templates/header.php';
 
 $feedback = ['type' => '', 'message' => ''];
 
 // --- CUD LOGIC ---
-// Handle Add/Edit Teacher
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = isset($_POST['user_id']) ? (int)$_POST['user_id'] : null;
     $full_name = sanitize_input($_POST['full_name']);
@@ -30,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_teacher = $mysqli->prepare("UPDATE teachers SET full_name = ? WHERE user_id = ?");
             $stmt_teacher->bind_param("si", $full_name, $user_id);
             $stmt_teacher->execute();
-            $feedback = ['type' => 'success', 'message' => 'Teacher updated successfully!'];
+            $feedback = ['type' => 'success', 'message' => 'Guru berhasil diperbarui!'];
         } else { // --- CREATE ---
-            if (empty($password)) throw new Exception("Password is required for new users.");
+            if (empty($password)) throw new Exception("Kata sandi diperlukan untuk pengguna baru.");
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $role = 'teacher';
 
@@ -45,14 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_teacher = $mysqli->prepare("INSERT INTO teachers (user_id, full_name) VALUES (?, ?)");
             $stmt_teacher->bind_param("is", $new_user_id, $full_name);
             $stmt_teacher->execute();
-            $feedback = ['type' => 'success', 'message' => 'Teacher added successfully!'];
+            $feedback = ['type' => 'success', 'message' => 'Guru berhasil ditambahkan!'];
         }
         $mysqli->commit();
     } catch (Exception $e) {
         $mysqli->rollback();
         $feedback = ['type' => 'danger', 'message' => 'Error: ' . $e->getMessage()];
         if ($mysqli->errno === 1062) {
-            $feedback['message'] = 'Username or email already exists.';
+            $feedback['message'] = 'Nama pengguna atau email sudah ada.';
         }
     }
 }
@@ -63,9 +62,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
     $stmt = $mysqli->prepare("DELETE FROM users WHERE id = ? AND role = 'teacher'");
     $stmt->bind_param("i", $user_id_to_delete);
     if ($stmt->execute()) {
-        $feedback = ['type' => 'success', 'message' => 'Teacher deleted successfully!'];
+        $feedback = ['type' => 'success', 'message' => 'Guru berhasil dihapus!'];
     } else {
-        $feedback = ['type' => 'danger', 'message' => 'Failed to delete teacher.'];
+        $feedback = ['type' => 'danger', 'message' => 'Gagal menghapus guru.'];
     }
 }
 
@@ -84,7 +83,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 }
 ?>
 
-<h1 class="mb-4">Manage Teachers</h1>
+<h1 class="mb-4">Kelola Guru</h1>
 
 <?php if (!empty($feedback['message'])): ?>
 <div class="alert alert-<?php echo $feedback['type']; ?>"><?php echo $feedback['message']; ?></div>
@@ -92,18 +91,18 @@ if ($action === 'edit' && isset($_GET['id'])) {
 
 <?php if ($is_form_view): ?>
 <div class="card">
-    <div class="card-header"><h5><?php echo $action === 'edit' ? 'Edit Teacher' : 'Add New Teacher'; ?></h5></div>
+    <div class="card-header"><h5><?php echo $action === 'edit' ? 'Ubah Guru' : 'Tambah Guru Baru'; ?></h5></div>
     <div class="card-body">
         <form action="manage_teachers.php" method="POST">
             <?php if ($action === 'edit' && $teacher_data): ?>
                 <input type="hidden" name="user_id" value="<?php echo $teacher_data['id']; ?>">
             <?php endif; ?>
             <div class="mb-3">
-                <label for="full_name" class="form-label">Full Name</label>
+                <label for="full_name" class="form-label">Nama Lengkap</label>
                 <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo htmlspecialchars($teacher_data['full_name'] ?? ''); ?>" required>
             </div>
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label for="username" class="form-label">Nama Pengguna</label>
                 <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($teacher_data['username'] ?? ''); ?>" required>
             </div>
             <div class="mb-3">
@@ -111,23 +110,23 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($teacher_data['email'] ?? ''); ?>" required>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Kata Sandi</label>
                 <input type="password" class="form-control" id="password" name="password" <?php echo $action === 'add' ? 'required' : ''; ?>>
-                <?php if ($action === 'edit'): ?><small class="form-text text-muted">Leave blank to keep current password.</small><?php endif; ?>
+                <?php if ($action === 'edit'): ?><small class="form-text text-muted">Biarkan kosong untuk mempertahankan kata sandi saat ini.</small><?php endif; ?>
             </div>
-            <button type="submit" class="btn btn-primary"><?php echo $action === 'edit' ? 'Update Teacher' : 'Add Teacher'; ?></button>
-            <a href="manage_teachers.php" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary"><?php echo $action === 'edit' ? 'Perbarui Guru' : 'Tambah Guru'; ?></button>
+            <a href="manage_teachers.php" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 </div>
 <?php else: ?>
-<div class="mb-3"><a href="?action=add" class="btn btn-success"><i class="fas fa-plus me-2"></i>Add New Teacher</a></div>
+<div class="mb-3"><a href="?action=add" class="btn btn-success"><i class="fas fa-plus me-2"></i>Tambah Guru Baru</a></div>
 <div class="card">
-    <div class="card-header">Teacher List</div>
+    <div class="card-header">Daftar Guru</div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
-                <thead><tr><th>Full Name</th><th>Username</th><th>Email</th><th>Actions</th></tr></thead>
+                <thead><tr><th>Nama Lengkap</th><th>Nama Pengguna</th><th>Email</th><th>Aksi</th></tr></thead>
                 <tbody>
                     <?php
                     $result = $mysqli->query("SELECT u.id, u.username, u.email, t.full_name FROM users u JOIN teachers t ON u.id = t.user_id WHERE u.role = 'teacher' ORDER BY t.full_name ASC");
@@ -138,13 +137,13 @@ if ($action === 'edit' && isset($_GET['id'])) {
                                 <td><?php echo htmlspecialchars($teacher['username']); ?></td>
                                 <td><?php echo htmlspecialchars($teacher['email']); ?></td>
                                 <td>
-                                    <a href="?action=edit&id=<?php echo $teacher['id']; ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                    <a href="?action=delete&id=<?php echo $teacher['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');"><i class="fas fa-trash"></i> Delete</a>
+                                    <a href="?action=edit&id=<?php echo $teacher['id']; ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Ubah</a>
+                                    <a href="?action=delete&id=<?php echo $teacher['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin?');"><i class="fas fa-trash"></i> Hapus</a>
                                 </td>
                             </tr>
                         <?php endwhile;
                     else: ?>
-                        <tr><td colspan="4" class="text-center">No teachers found.</td></tr>
+                        <tr><td colspan="4" class="text-center">Tidak ada guru yang ditemukan.</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>

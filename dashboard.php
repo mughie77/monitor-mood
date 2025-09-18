@@ -1,5 +1,5 @@
 <?php
-$page_title = 'My Dashboard';
+$page_title = 'Dasbor Saya';
 require_once 'templates/header.php';
 
 // Protect page for specific roles
@@ -31,43 +31,43 @@ $stmt->close();
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Welcome, <?php echo htmlspecialchars($full_name); ?>!</h2>
-        <a href="logout.php" class="btn btn-outline-danger">Logout</a>
+        <h2>Selamat Datang, <?php echo htmlspecialchars($full_name); ?>!</h2>
+        <a href="logout.php" class="btn btn-outline-danger">Keluar</a>
     </div>
 
     <div id="mood-response-message"></div>
 
     <div class="card text-center" id="mood-panel">
         <div class="card-header">
-            <h4 class="mb-0">How are you feeling today?</h4>
+            <h4 class="mb-0">Bagaimana perasaanmu hari ini?</h4>
         </div>
         <div class="card-body">
             <?php if ($mood_today): ?>
                 <div class="card-mood-submitted p-4">
-                    <h5 class="text-success">Thanks for sharing your mood today!</h5>
-                    <p class="mb-0">You can share your mood again tomorrow.</p>
+                    <h5 class="text-success">Terima kasih telah berbagi suasana hati Anda hari ini!</h5>
+                    <p class="mb-0">Anda dapat berbagi suasana hati lagi besok.</p>
                 </div>
             <?php else: ?>
                 <div id="mood-selector-ui" class="mood-selector">
                     <div class="mood-option" data-mood-value="1">
                         <i class="fas fa-face-frown"></i>
-                        <span>Sad</span>
+                        <span>Sedih</span>
                     </div>
                     <div class="mood-option" data-mood-value="2">
                         <i class="fas fa-face-meh"></i>
-                        <span>Neutral</span>
+                        <span>Biasa</span>
                     </div>
                     <div class="mood-option" data-mood-value="3">
                         <i class="fas fa-face-smile"></i>
-                        <span>Happy</span>
+                        <span>Senang</span>
                     </div>
                     <div class="mood-option" data-mood-value="4">
                         <i class="fas fa-face-grin-beam"></i>
-                        <span>Excited</span>
+                        <span>Bersemangat</span>
                     </div>
                     <div class="mood-option" data-mood-value="5">
                         <i class="fas fa-face-grin-stars"></i>
-                        <span>Great</span>
+                        <span>Luar Biasa</span>
                     </div>
                 </div>
             <?php endif; ?>
@@ -77,10 +77,10 @@ $stmt->close();
     <!-- Placeholder for past mood history -->
     <div class="card mt-4">
         <div class="card-header">
-            <h5>Your Mood History</h5>
+            <h5>Riwayat Suasana Hati Anda</h5>
         </div>
         <div class="card-body">
-            <p class="text-muted">Your past mood entries will be displayed here soon.</p>
+            <p class="text-muted">Entri suasana hati Anda sebelumnya akan ditampilkan di sini segera.</p>
         </div>
     </div>
 

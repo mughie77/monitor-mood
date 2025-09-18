@@ -1,105 +1,105 @@
-# Mood Tracker Web Application
+# Aplikasi Web Pelacak Suasana Hati
 
-A full-featured web application built with native PHP and MySQL that allows students and teachers to log their daily mood. The application features a multi-level management system for admins, teachers, and students, complete with a modern, luxurious user interface.
+Aplikasi web berfitur lengkap yang dibuat dengan PHP natif dan MySQL yang memungkinkan siswa dan guru untuk mencatat suasana hati harian mereka. Aplikasi ini memiliki sistem manajemen multi-level untuk admin, guru, dan siswa, lengkap dengan antarmuka pengguna yang modern dan mewah.
 
-## Features
+## Fitur
 
-- **Role-Based Access Control:** A secure login system that directs users (Admin, Teacher, Student) to their respective dashboards.
-- **Daily Mood Logging:** An elegant interface for students and teachers to select and record their mood once per day.
-- **Admin Dashboard:** A comprehensive dashboard for administrators with a modern side-navigation menu.
-- **User Management (CRUD):** Admins can Create, Read, Update, and Delete student, teacher, and other admin accounts.
-- **Advanced Mood Analysis:**
-    - Interactive line charts visualizing mood trends over different periods (daily, monthly, yearly).
-    - Summary statistics for a quick overview of user counts and average moods.
-- **Modern & Responsive UI:** Built with Bootstrap 5 and custom styling for a clean, luxurious, and mobile-friendly experience.
+- **Kontrol Akses Berbasis Peran:** Sistem login aman yang mengarahkan pengguna (Admin, Guru, Siswa) ke dasbor masing-masing.
+- **Pencatatan Suasana Hati Harian:** Antarmuka yang elegan bagi siswa dan guru untuk memilih dan mencatat suasana hati mereka sekali sehari.
+- **Dasbor Admin:** Dasbor komprehensif untuk administrator dengan menu navigasi samping yang modern.
+- **Manajemen Pengguna (CRUD):** Admin dapat Membuat, Membaca, Memperbarui, dan Menghapus (CRUD) akun siswa, guru, dan admin lainnya.
+- **Analisis Suasana Hati Tingkat Lanjut:**
+    - Grafik garis interaktif yang memvisualisasikan tren suasana hati selama periode yang berbeda (harian, bulanan, tahunan).
+    - Statistik ringkasan untuk gambaran cepat tentang jumlah pengguna dan suasana hati rata-rata.
+- **UI Modern & Responsif:** Dibangun dengan Bootstrap 5 dan gaya kustom untuk pengalaman yang bersih, mewah, dan ramah seluler.
 
-## Technology Stack
+## Tumpukan Teknologi
 
-- **Backend:** PHP 8+ (Native)
+- **Backend:** PHP 8+ (Natif)
 - **Database:** MySQL / MariaDB
 - **Frontend:** HTML5, CSS3, JavaScript (ES6)
-- **Frameworks/Libraries:**
-    - [Bootstrap 5](https://getbootstrap.com/) for responsive design and components.
-    - [Chart.js](https://www.chartjs.org/) for interactive data visualization.
-    - [Font Awesome](https://fontawesome.com/) for icons.
-    - [Google Fonts (Poppins)](https://fonts.google.com/specimen/Poppins) for typography.
+- **Kerangka Kerja/Pustaka:**
+    - [Bootstrap 5](https://getbootstrap.com/) untuk desain responsif dan komponen.
+    - [Chart.js](https://www.chartjs.org/) untuk visualisasi data interaktif.
+    - [Font Awesome](https://fontawesome.com/) untuk ikon.
+    - [Google Fonts (Poppins)](https://fonts.google.com/specimen/Poppins) untuk tipografi.
 
 ---
 
-## Installation and Setup Guide
+## Panduan Instalasi dan Pengaturan
 
-Follow these steps to set up and run the application on your local machine.
+Ikuti langkah-langkah ini untuk mengatur dan menjalankan aplikasi di mesin lokal Anda.
 
-### 1. Prerequisites
+### 1. Prasyarat
 
-Ensure you have a local server environment installed, such as:
-- [XAMPP](https://www.apachefriends.org/index.html) (recommended for Windows/macOS/Linux)
-- WAMP (for Windows)
-- MAMP (for macOS)
+Pastikan Anda telah menginstal lingkungan server lokal, seperti:
+- [XAMPP](https://www.apachefriends.org/index.html) (disarankan untuk Windows/macOS/Linux)
+- WAMP (untuk Windows)
+- MAMP (untuk macOS)
 
-This guide will assume you are using **XAMPP**.
+Panduan ini mengasumsikan Anda menggunakan **XAMPP**.
 
-### 2. Get the Code
+### 2. Dapatkan Kode
 
-Clone this repository or download the source code and place it in your server's web root directory.
-- For XAMPP, this is typically the `htdocs` folder (e.g., `C:\xampp\htdocs`).
-- You can place the project in a subfolder, for example: `C:\xampp\htdocs\mood-tracker`
+Klona repositori ini atau unduh kode sumber dan letakkan di direktori root web server Anda.
+- Untuk XAMPP, biasanya ini adalah folder `htdocs` (misalnya, `C:\xampp\htdocs`).
+- Anda dapat menempatkan proyek di subfolder, misalnya: `C:\xampp\htdocs\pelacak-suasana-hati`
 
-### 3. Database Setup
+### 3. Pengaturan Database
 
-The application requires a MySQL database to store all its data.
+Aplikasi ini memerlukan database MySQL untuk menyimpan semua datanya.
 
-1.  **Start Apache and MySQL** from your XAMPP control panel.
-2.  Open your web browser and navigate to `http://localhost/phpmyadmin`.
-3.  **Create a new database:**
-    - Click on the **"Databases"** tab.
-    - Enter a name for the database, for example, `mood_tracker`.
-    - Choose a collation (e.g., `utf8mb4_general_ci`) and click **"Create"**.
-4.  **Import the SQL schema:**
-    - Select the newly created database (`mood_tracker`) from the left-hand menu.
-    - Click on the **"Import"** tab.
-    - Click **"Choose File"** and select the `database.sql` file located in the root of this project.
-    - Scroll down and click **"Go"**.
+1.  **Jalankan Apache dan MySQL** dari panel kontrol XAMPP Anda.
+2.  Buka browser web Anda dan navigasikan ke `http://localhost/phpmyadmin`.
+3.  **Buat database baru:**
+    - Klik pada tab **"Basis Data"**.
+    - Masukkan nama untuk database, misalnya, `mood_tracker`.
+    - Pilih collation (misalnya, `utf8mb4_general_ci`) dan klik **"Buat"**.
+4.  **Impor skema SQL:**
+    - Pilih database yang baru dibuat (`mood_tracker`) dari menu sebelah kiri.
+    - Klik pada tab **"Impor"**.
+    - Klik **"Pilih File"** dan pilih file `database.sql` yang terletak di root proyek ini.
+    - Gulir ke bawah dan klik **"Go"**.
 
-This will create all the necessary tables (`users`, `students`, `teachers`, `mood_records`) and seed them with sample data.
+Ini akan membuat semua tabel yang diperlukan (`users`, `students`, `teachers`, `mood_records`) dan mengisinya dengan data sampel.
 
-### 4. Configure the Application
+### 4. Konfigurasi Aplikasi
 
-You need to tell the application how to connect to your newly created database.
+Anda perlu memberitahu aplikasi cara terhubung ke database yang baru Anda buat.
 
-1.  Navigate to the `app` folder within the project directory.
-2.  Open the `config.php` file in a text editor.
-3.  Update the database credentials to match your local setup. If you used the name `mood_tracker` and have a standard XAMPP installation, the settings might look like this:
+1.  Navigasikan ke folder `app` di dalam direktori proyek.
+2.  Buka file `config.php` di editor teks.
+3.  Perbarui kredensial database agar sesuai dengan pengaturan lokal Anda. Jika Anda menggunakan nama `mood_tracker` dan memiliki instalasi XAMPP standar, pengaturannya mungkin terlihat seperti ini:
 
     ```php
-    // Database Configuration
+    // Konfigurasi Database
     define('DB_HOST', 'localhost');
-    define('DB_USERNAME', 'root'); // Default XAMPP username
-    define('DB_PASSWORD', '');     // Default XAMPP password is empty
+    define('DB_USERNAME', 'root'); // Nama pengguna default XAMPP
+    define('DB_PASSWORD', '');     // Kata sandi default XAMPP kosong
     define('DB_NAME', 'mood_tracker');
     ```
-4.  Update the `SITE_URL` to match the path to your project folder. For example, if your project is in `htdocs/mood-tracker`, the URL should be:
+4.  Perbarui `SITE_URL` agar sesuai dengan path ke folder proyek Anda. Misalnya, jika proyek Anda ada di `htdocs/pelacak-suasana-hati`, URL-nya harus:
     ```php
-    // Site Configuration
-    define('SITE_URL', 'http://localhost/mood-tracker');
+    // Konfigurasi Situs
+    define('SITE_URL', 'http://localhost/pelacak-suasana-hati');
     ```
 
-### 5. Running the Application
+### 5. Menjalankan Aplikasi
 
-Once the setup is complete, you can access the application by navigating to the URL you configured in `config.php`.
+Setelah pengaturan selesai, Anda dapat mengakses aplikasi dengan menavigasi ke URL yang Anda konfigurasikan di `config.php`.
 
--   **URL:** `http://localhost/mood-tracker` (or your chosen folder name)
+-   **URL:** `http://localhost/pelacak-suasana-hati` (atau nama folder pilihan Anda)
 
 ---
 
-## Default Login Credentials
+## Kredensial Login Default
 
-You can use these sample accounts (which are included in `database.sql`) to test the application:
+Anda dapat menggunakan akun sampel ini (yang disertakan dalam `database.sql`) untuk menguji aplikasi:
 
-| Role      | Username   | Password   |
-|-----------|------------|------------|
-| **Admin**   | `admin`    | `password` |
-| **Teacher** | `teacher1` | `password` |
-| **Student** | `student1` | `password` |
+| Peran     | Nama Pengguna | Kata Sandi |
+|-----------|---------------|------------|
+| **Admin** | `admin`       | `password` |
+| **Guru**  | `teacher1`    | `password` |
+| **Siswa** | `student1`    | `password` |
 
-You can add, edit, or delete these users from the Admin Dashboard after logging in as the `admin`.
+Anda dapat menambah, mengubah, atau menghapus pengguna ini dari Dasbor Admin setelah masuk sebagai `admin`.

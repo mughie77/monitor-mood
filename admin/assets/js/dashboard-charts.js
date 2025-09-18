@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     plugins: {
                         legend: { position: 'top' },
-                        title: { display: true, text: `Mood Trends (${filter.charAt(0).toUpperCase() + filter.slice(1)})` }
+                        title: { display: true, text: `Tren Suasana Hati` }
                     }
                 }
             });
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('moodChart').style.display = 'none';
             const errorContainer = document.querySelector('.card-body');
             if(errorContainer) {
-                errorContainer.innerHTML += '<p class="text-danger">Could not load chart data.</p>';
+                errorContainer.innerHTML += '<p class="text-danger">Tidak dapat memuat data grafik.</p>';
             }
         }
     };

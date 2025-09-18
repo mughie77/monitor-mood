@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password']; // Don't sanitize password before verification
 
     if (empty($username) || empty($password)) {
-        $error_message = 'Please enter both username and password.';
+        $error_message = 'Silakan masukkan nama pengguna dan kata sandi.';
     } else {
         // Prepare statement to prevent SQL injection
         $stmt = $mysqli->prepare("SELECT id, password_hash, role FROM users WHERE username = ? OR email = ?");
@@ -44,21 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     redirect('dashboard.php');
                 }
             } else {
-                $error_message = 'Invalid username or password.';
+                $error_message = 'Nama pengguna atau kata sandi tidak valid.';
             }
         } else {
-            $error_message = 'Invalid username or password.';
+            $error_message = 'Nama pengguna atau kata sandi tidak valid.';
         }
         $stmt->close();
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Mood Tracker</title>
+    <title>Login - Pelacak Suasana Hati</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -93,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="card login-card">
         <div class="card-body">
-            <h2 class="text-center mb-4">Welcome Back!</h2>
-            <p class="text-center text-muted mb-4">Log in to track your mood.</p>
+            <h2 class="text-center mb-4">Selamat Datang Kembali!</h2>
+            <p class="text-center text-muted mb-4">Masuk untuk mencatat suasana hati Anda.</p>
 
             <?php if (!empty($error_message)): ?>
                 <div class="alert alert-danger" role="alert">
@@ -104,15 +104,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <form action="login.php" method="POST">
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username or Email</label>
+                    <label for="username" class="form-label">Nama Pengguna atau Email</label>
                     <input type="text" class="form-control" id="username" name="username" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">Kata Sandi</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Masuk</button>
                 </div>
             </form>
         </div>

@@ -6,13 +6,13 @@ start_session();
 
 // Ensure the user is logged in as a teacher or student
 if (!is_logged_in() || !in_array(get_user_role(), ['teacher', 'student'])) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized access.']);
+    echo json_encode(['success' => false, 'message' => 'Akses tidak sah.']);
     exit();
 }
 
 // Ensure it's a POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+    echo json_encode(['success' => false, 'message' => 'Metode permintaan tidak valid.']);
     exit();
 }
 
@@ -21,7 +21,7 @@ $mood_value = isset($_POST['mood_value']) ? (int)$_POST['mood_value'] : 0;
 
 // Validate the mood value
 if ($mood_value < 1 || $mood_value > 5) {
-    echo json_encode(['success' => false, 'message' => 'Invalid mood value provided.']);
+    echo json_encode(['success' => false, 'message' => 'Nilai suasana hati yang diberikan tidak valid.']);
     exit();
 }
 
@@ -34,7 +34,7 @@ $stmt_check->execute();
 $result_check = $stmt_check->get_result();
 
 if ($result_check->num_rows > 0) {
-    echo json_encode(['success' => false, 'message' => 'You have already submitted your mood for today.']);
+    echo json_encode(['success' => false, 'message' => 'Anda sudah mengirimkan suasana hati untuk hari ini.']);
     $stmt_check->close();
     exit();
 }
@@ -45,10 +45,10 @@ $stmt_insert = $mysqli->prepare("INSERT INTO mood_records (user_id, mood_value, 
 $stmt_insert->bind_param("iis", $user_id, $mood_value, $record_date);
 
 if ($stmt_insert->execute()) {
-    echo json_encode(['success' => true, 'message' => 'Your mood has been recorded successfully!']);
+    echo json_encode(['success' => true, 'message' => 'Suasana hati Anda berhasil dicatat!']);
 } else {
     // Potentially log the real error: $stmt_insert->error
-    echo json_encode(['success' => false, 'message' => 'Failed to record your mood. Please try again.']);
+    echo json_encode(['success' => false, 'message' => 'Gagal mencatat suasana hati Anda. Silakan coba lagi.']);
 }
 
 $stmt_insert->close();

@@ -96,10 +96,10 @@ Setelah pengaturan selesai, Anda dapat mengakses aplikasi dengan menavigasi ke U
 
 Anda dapat menggunakan akun sampel ini (yang disertakan dalam `database.sql`) untuk menguji aplikasi:
 
-| Peran     | Nama Pengguna | Kata Sandi |
-|-----------|---------------|------------|
-| **Admin** | `admin`       | `password` |
-| **Guru**  | `teacher1`    | `password` |
-| **Siswa** | `student1`    | `password` |
+| Peran     | Nama Pengguna | Kata Sandi      |
+|-----------|---------------|-----------------|
+| **Admin** | `admin`       | `rasmuslerdorf` |
+| **Guru**  | `teacher1`    | `rasmuslerdorf` |
+| **Siswa** | `student1`    | `rasmuslerdorf` |
 
 Anda dapat menambah, mengubah, atau menghapus pengguna ini dari Dasbor Admin setelah masuk sebagai `admin`.

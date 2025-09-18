@@ -61,10 +61,11 @@ CREATE TABLE `mood_records` (
 -- <?php echo password_hash('password', PASSWORD_DEFAULT); ?>
 --
 
+-- The default password for all users is 'rasmuslerdorf'
 INSERT INTO `users` (`username`, `email`, `password_hash`, `role`) VALUES
-('admin', 'admin@app.com', '$2y$10$N.o.e.0N7s46/2.d.Hl8B.sN1GgwgZl1uS.A/j6Y.l/E.a/9.l.W', 'admin'),
-('teacher1', 'teacher1@app.com', '$2y$10$N.o.e.0N7s46/2.d.Hl8B.sN1GgwgZl1uS.A/j6Y.l/E.a/9.l.W', 'teacher'),
-('student1', 'student1@app.com', '$2y$10$N.o.e.0N7s46/2.d.Hl8B.sN1GgwgZl1uS.A/j6Y.l/E.a/9.l.W', 'student');
+('admin', 'admin@app.com', '$2y$12$4Umg0rCJwMswRw/l.SwHvuQV01coP0eWmGzd61QH2RvAOMANUBGC.', 'admin'),
+('teacher1', 'teacher1@app.com', '$2y$12$4Umg0rCJwMswRw/l.SwHvuQV01coP0eWmGzd61QH2RvAOMANUBGC.', 'teacher'),
+('student1', 'student1@app.com', '$2y$12$4Umg0rCJwMswRw/l.SwHvuQV01coP0eWmGzd61QH2RvAOMANUBGC.', 'student');
 
 INSERT INTO `teachers` (`user_id`, `full_name`) VALUES
 (2, 'Mr. John Doe');

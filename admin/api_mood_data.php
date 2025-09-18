@@ -63,7 +63,9 @@ $summary['avg_teacher_mood_today'] = $today_moods['teacher'] ?? 'N/A';
 // --- Final Response ---
 $response = [
     'chartData' => $chartData,
-    'summary' => $summary
+    'summary' => $summary,
+    'range_start' => !empty($labels) ? reset($labels) : null,
+    'range_end' => !empty($labels) ? end($labels) : null
 ];
 
 echo json_encode($response);

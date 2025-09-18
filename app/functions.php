@@ -84,6 +84,8 @@ function base_url($path = '') {
  * @return string The text description of the mood.
  */
 function get_mood_description($mood_value) {
+    // Round the value to handle averages
+    $mood_value = round($mood_value);
     switch ($mood_value) {
         case 1:
             return 'Sedih';

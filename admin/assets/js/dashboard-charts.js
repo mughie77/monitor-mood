@@ -2,12 +2,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctx = document.getElementById('moodChart').getContext('2d');
     let moodChart;
 
+    // Replicate the PHP helper function in JS
+    const getMoodDescription = (moodValue) => {
+        const value = Math.round(moodValue);
+        switch (value) {
+            case 1: return 'Sedih';
+            case 2: return 'Biasa';
+            case 3: return 'Senang';
+            case 4: return 'Bersemangat';
+            case 5: return 'Luar Biasa';
+            default: return 'Tidak Diketahui';
+        }
+    };
+
     // Function to update summary cards
     const updateSummaryCards = (summary) => {
+        const studentMood = summary.avg_student_mood_today;
+        const teacherMood = summary.avg_teacher_mood_today;
+
         document.getElementById('total-students').textContent = summary.total_students || '0';
         document.getElementById('total-teachers').textContent = summary.total_teachers || '0';
-        document.getElementById('avg-student-mood').textContent = summary.avg_student_mood_today || 'N/A';
-        document.getElementById('avg-teacher-mood').textContent = summary.avg_teacher_mood_today || 'N/A';
+
+        if (studentMood !== 'N/A') {
+            document.getElementById('avg-student-mood').textContent = `${studentMood} (${getMoodDescription(studentMood)})`;
+        } else {
+            document.getElementById('avg-student-mood').textContent = 'N/A';
+        }
+
+        if (teacherMood !== 'N/A') {
+            document.getElementById('avg-teacher-mood').textContent = `${teacherMood} (${getMoodDescription(teacherMood)})`;
+        } else {
+            document.getElementById('avg-teacher-mood').textContent = 'N/A';
+        }
     };
 
     const renderChart = async (filter = 'daily') => {
@@ -16,9 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) throw new Error('Network response was not ok');
 
             const apiResponse = await response.json();
-            const { chartData, summary } = apiResponse;
+            const { chartData, summary, range_start, range_end } = apiResponse;
 
-            // Update summary cards (we only need to do this once, but it's fine for this app)
             if (summary) {
                 updateSummaryCards(summary);
             }
@@ -27,12 +52,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 moodChart.destroy();
             }
 
+            let chartTitle = 'Tren Suasana Hati';
+            if (range_start && range_end) {
+                chartTitle += `: ${range_start} - ${range_end}`;
+            }
+
             moodChart = new Chart(ctx, {
                 type: 'line',
-                data: {
-                    labels: chartData.labels,
-                    datasets: chartData.datasets
-                },
+                data: chartData,
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
@@ -41,7 +68,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     plugins: {
                         legend: { position: 'top' },
-                        title: { display: true, text: `Tren Suasana Hati` }
+                        title: { display: true, text: chartTitle },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        const value = context.parsed.y.toFixed(2);
+                                        label += `${value} (${getMoodDescription(value)})`;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
                     }
                 }
             });
@@ -59,10 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.btn-group .btn');
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Manage active state for buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-
             const filter = this.id.replace('filter-', '');
             renderChart(filter);
         });

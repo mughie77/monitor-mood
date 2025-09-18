@@ -1,0 +1,69 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+#wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px;
+    background-color: #343a40; /* Dark background */
+    transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#sidebar-wrapper .list-group-item {
+    border: none;
+    padding: 1rem 1.5rem;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #495057;
+}
+
+#page-content-wrapper {
+    flex: 1;
+    min-width: 0; /* Important for flexbox to prevent overflow */
+    width: 100%;
+}
+
+/* Toggled state */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -250px;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* Simple card styling for dashboard widgets */
+.card-header {
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+}

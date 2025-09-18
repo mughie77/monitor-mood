@@ -1,0 +1,64 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Mood Selection Styles */
+.mood-selector {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.mood-option {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.mood-option i {
+    font-size: 4rem; /* Big, friendly icons */
+    color: #ced4da;
+    background-color: white;
+    border-radius: 50%;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: color 0.3s, box-shadow 0.3s;
+}
+
+.mood-option span {
+    display: block;
+    margin-top: 0.75rem;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.mood-option:hover {
+    transform: translateY(-10px);
+}
+
+.mood-option:hover i {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Color styles for hover */
+.mood-option:hover .fa-face-frown { color: #dc3545; } /* Sad */
+.mood-option:hover .fa-face-meh { color: #ffc107; } /* Neutral */
+.mood-option:hover .fa-face-smile { color: #198754; } /* Happy */
+.mood-option:hover .fa-face-grin-beam { color: #0dcaf0; } /* Excited */
+.mood-option:hover .fa-face-grin-stars { color: #fd7e14; } /* Great */
+
+.card-mood-submitted {
+    border: 2px dashed #198754;
+    background-color: #f8f9fa;
+}

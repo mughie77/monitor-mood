@@ -25,7 +25,7 @@ require_once 'templates/header.php';
     <div class="col-md-6 col-lg-3 mb-4">
         <div class="card text-white bg-info">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-smile me-2"></i>Rata-rata Mood Siswa (Hari Ini)</h5>
+                <h5 class="card-title"><i class="fas fa-smile me-2"></i>Rata-rata Mood Siswa <span class="period-text small"></span></h5>
                 <p class="card-text fs-4" id="avg-student-mood">--</p>
             </div>
         </div>
@@ -33,7 +33,7 @@ require_once 'templates/header.php';
     <div class="col-md-6 col-lg-3 mb-4">
         <div class="card text-white bg-warning">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-smile-beam me-2"></i>Rata-rata Mood Guru (Hari Ini)</h5>
+                <h5 class="card-title"><i class="fas fa-smile-beam me-2"></i>Rata-rata Mood Guru <span class="period-text small"></span></h5>
                 <p class="card-text fs-4" id="avg-teacher-mood">--</p>
             </div>
         </div>

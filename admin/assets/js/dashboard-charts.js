@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctx = document.getElementById('moodChart').getContext('2d');
     let moodChart;
 
-    // Replicate the PHP helper function in JS
     const getMoodDescription = (moodValue) => {
         const value = Math.round(moodValue);
         switch (value) {
@@ -15,14 +14,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Function to update summary cards
-    const updateSummaryCards = (summary) => {
-        const studentMood = summary.avg_student_mood_today;
-        const teacherMood = summary.avg_teacher_mood_today;
+    // This function now updates summary cards and their titles
+    const updateDashboardSummaries = (summary, activeFilterButton) => {
+        const studentMood = summary.avg_student_mood_period;
+        const teacherMood = summary.avg_teacher_mood_period;
+        const periodText = `(${activeFilterButton.textContent})`;
 
+        // Update total counts
         document.getElementById('total-students').textContent = summary.total_students || '0';
         document.getElementById('total-teachers').textContent = summary.total_teachers || '0';
 
+        // Update period text in card titles
+        document.querySelectorAll('.period-text').forEach(span => {
+            span.textContent = periodText;
+        });
+
+        // Update average mood values and descriptions
         if (studentMood !== 'N/A') {
             document.getElementById('avg-student-mood').textContent = `${studentMood} (${getMoodDescription(studentMood)})`;
         } else {
@@ -44,8 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const apiResponse = await response.json();
             const { chartData, summary, range_start, range_end } = apiResponse;
 
-            if (summary) {
-                updateSummaryCards(summary);
+            // Find the active button to pass its text to the summary function
+            const activeFilterButton = document.querySelector(`.btn-group .btn#filter-${filter}`);
+            if (summary && activeFilterButton) {
+                updateDashboardSummaries(summary, activeFilterButton);
             }
 
             if (moodChart) {
@@ -63,9 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    scales: {
-                        y: { beginAtZero: true, max: 5, ticks: { stepSize: 1 } }
-                    },
+                    scales: { y: { beginAtZero: true, max: 5, ticks: { stepSize: 1 } } },
                     plugins: {
                         legend: { position: 'top' },
                         title: { display: true, text: chartTitle },
@@ -73,9 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             callbacks: {
                                 label: function(context) {
                                     let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
+                                    if (label) label += ': ';
                                     if (context.parsed.y !== null) {
                                         const value = context.parsed.y.toFixed(2);
                                         label += `${value} (${getMoodDescription(value)})`;

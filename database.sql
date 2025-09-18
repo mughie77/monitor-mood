@@ -70,8 +70,8 @@ INSERT INTO `users` (`username`, `email`, `password_hash`, `role`) VALUES
 INSERT INTO `teachers` (`user_id`, `full_name`) VALUES
 (2, 'Mr. John Doe');
 
-INSERT INTO `students` (`user_id`, `full_name`) VALUES
-(3, 'Jane Smith');
+INSERT INTO `students` (`user_id`, `full_name`, `class`) VALUES
+(3, 'Jane Smith', 'Kelas 10A');
 
 -- Sample mood records for charting
 INSERT INTO `mood_records` (`user_id`, `mood_value`, `record_date`) VALUES

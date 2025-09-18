@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = sanitize_input($_POST['full_name']);
     $username = sanitize_input($_POST['username']);
     $email = sanitize_input($_POST['email']);
+    $class = sanitize_input($_POST['class']); // New class field
     $password = $_POST['password'];
 
     $mysqli->begin_transaction();
@@ -26,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt_pass->execute();
             }
 
-            $stmt_student = $mysqli->prepare("UPDATE students SET full_name = ? WHERE user_id = ?");
-            $stmt_student->bind_param("si", $full_name, $user_id);
+            $stmt_student = $mysqli->prepare("UPDATE students SET full_name = ?, class = ? WHERE user_id = ?");
+            $stmt_student->bind_param("ssi", $full_name, $class, $user_id);
             $stmt_student->execute();
             $feedback = ['type' => 'success', 'message' => 'Siswa berhasil diperbarui!'];
         } else { // --- CREATE ---
@@ -41,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $new_user_id = $mysqli->insert_id;
 
-            $stmt_student = $mysqli->prepare("INSERT INTO students (user_id, full_name) VALUES (?, ?)");
-            $stmt_student->bind_param("is", $new_user_id, $full_name);
+            $stmt_student = $mysqli->prepare("INSERT INTO students (user_id, full_name, class) VALUES (?, ?, ?)");
+            $stmt_student->bind_param("iss", $new_user_id, $full_name, $class);
             $stmt_student->execute();
             $feedback = ['type' => 'success', 'message' => 'Siswa berhasil ditambahkan!'];
         }
@@ -75,7 +76,7 @@ $student_data = null;
 
 if ($action === 'edit' && isset($_GET['id'])) {
     $student_id_to_edit = (int)$_GET['id'];
-    $stmt = $mysqli->prepare("SELECT u.id, u.username, u.email, s.full_name FROM users u JOIN students s ON u.id = s.user_id WHERE u.id = ? AND u.role = 'student'");
+    $stmt = $mysqli->prepare("SELECT u.id, u.username, u.email, s.full_name, s.class FROM users u JOIN students s ON u.id = s.user_id WHERE u.id = ? AND u.role = 'student'");
     $stmt->bind_param("i", $student_id_to_edit);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -103,6 +104,10 @@ if ($action === 'edit' && isset($_GET['id'])) {
             <div class="mb-3">
                 <label for="full_name" class="form-label">Nama Lengkap</label>
                 <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo htmlspecialchars($student_data['full_name'] ?? ''); ?>" required>
+            </div>
+             <div class="mb-3">
+                <label for="class" class="form-label">Kelas</label>
+                <input type="text" class="form-control" id="class" name="class" value="<?php echo htmlspecialchars($student_data['class'] ?? ''); ?>">
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Nama Pengguna</label>
@@ -134,15 +139,16 @@ if ($action === 'edit' && isset($_GET['id'])) {
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead>
-                    <tr><th>Nama Lengkap</th><th>Nama Pengguna</th><th>Email</th><th>Aksi</th></tr>
+                    <tr><th>Nama Lengkap</th><th>Kelas</th><th>Nama Pengguna</th><th>Email</th><th>Aksi</th></tr>
                 </thead>
                 <tbody>
                     <?php
-                    $result = $mysqli->query("SELECT u.id, u.username, u.email, s.full_name FROM users u JOIN students s ON u.id = s.user_id WHERE u.role = 'student' ORDER BY s.full_name ASC");
+                    $result = $mysqli->query("SELECT u.id, u.username, u.email, s.full_name, s.class FROM users u JOIN students s ON u.id = s.user_id WHERE u.role = 'student' ORDER BY s.full_name ASC");
                     if ($result && $result->num_rows > 0):
                         while ($student = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($student['full_name']); ?></td>
+                                <td><?php echo htmlspecialchars($student['class']); ?></td>
                                 <td><?php echo htmlspecialchars($student['username']); ?></td>
                                 <td><?php echo htmlspecialchars($student['email']); ?></td>
                                 <td>
@@ -152,7 +158,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
                             </tr>
                         <?php endwhile;
                     else: ?>
-                        <tr><td colspan="4" class="text-center">Tidak ada siswa yang ditemukan.</td></tr>
+                        <tr><td colspan="5" class="text-center">Tidak ada siswa yang ditemukan.</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>

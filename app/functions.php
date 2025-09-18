@@ -77,4 +77,26 @@ function base_url($path = '') {
     // A more robust solution might be needed depending on server setup.
     return rtrim(SITE_URL, '/') . '/' . ltrim($path, '/');
 }
+
+/**
+ * Converts a numeric mood value to its Indonesian text description.
+ * @param int $mood_value The numeric mood value (1-5).
+ * @return string The text description of the mood.
+ */
+function get_mood_description($mood_value) {
+    switch ($mood_value) {
+        case 1:
+            return 'Sedih';
+        case 2:
+            return 'Biasa';
+        case 3:
+            return 'Senang';
+        case 4:
+            return 'Bersemangat';
+        case 5:
+            return 'Luar Biasa';
+        default:
+            return 'Tidak Diketahui';
+    }
+}
 ?>

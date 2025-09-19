@@ -15,7 +15,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? $page_title . ' - Admin' : 'Dasbor Admin'; ?></title>
+    <title><?php echo isset($page_title) ? $page_title . ' - Admin SI-SONYA' : 'Admin SI-SONYA'; ?></title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts: Poppins -->
@@ -32,7 +32,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-        <div class="sidebar-heading">Admin Pelacak Suasana Hati</div>
+    <div class="sidebar-heading">Admin SI-SONYA</div>
         <div class="list-group list-group-flush">
             <a href="<?php echo base_url('admin/index.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">
                 <i class="fas fa-tachometer-alt me-2"></i>Dasbor

@@ -35,8 +35,8 @@ $stmt->close();
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
+            <h5 class="text-uppercase" style="color: var(--primary-color);">Aplikasi SI-SONYA</h5>
             <h2 class="mb-0">Selamat Datang, <?php echo htmlspecialchars($full_name); ?>!</h2>
-            <p class="text-muted">Semoga harimu menyenangkan.</p>
         </div>
         <a href="logout.php" class="btn btn-outline-danger">Keluar</a>
     </div>

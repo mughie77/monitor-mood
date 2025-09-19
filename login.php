@@ -58,34 +58,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Pelacak Suasana Hati</title>
+    <title>Login - SI-SONYA</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
+        :root {
+            --primary-color: #F39C12; /* Orange */
+            --secondary-color: #F1C40F; /* Yellow */
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #ece9e6, #ffffff);
+            background: linear-gradient(to right, #fdfbfb, #ebedee);
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
         }
         .login-card {
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
-            padding: 2rem;
+            padding: 2.5rem;
             border: none;
             border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .css-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 700;
         }
         .login-card .form-control {
             border-radius: 0.5rem;
             padding: 0.75rem 1rem;
         }
         .login-card .btn-primary {
-            background-color: #F39C12; /* Orange */
-            border-color: #F39C12;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
             border-radius: 0.5rem;
             padding: 0.75rem;
             font-weight: 600;
@@ -100,8 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="card login-card">
         <div class="card-body">
-            <h2 class="text-center mb-4">Selamat Datang Kembali!</h2>
-            <p class="text-center text-muted mb-4">Masuk untuk mencatat suasana hati Anda.</p>
+            <div class="css-logo">SS</div>
+            <h2 class="text-center mb-2">Login Aplikasi SI-SONYA</h2>
+            <p class="text-center text-muted mb-4">(Sistem Informasi Sekolah Aman dan Nyaman)</p>
 
             <?php if (!empty($error_message)): ?>
                 <div class="alert alert-danger" role="alert">

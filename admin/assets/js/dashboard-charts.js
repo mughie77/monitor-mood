@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const ctx = document.getElementById('moodChart').getContext('2d');
+    const moodCtx = document.getElementById('moodChart').getContext('2d');
+    const bullyingCtx = document.getElementById('bullyingChart').getContext('2d');
     let moodChart;
+    let bullyingChart;
 
     const getMoodDescription = (moodValue) => {
         const value = Math.round(moodValue);
@@ -14,22 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // This function now updates summary cards and their titles
     const updateDashboardSummaries = (summary, activeFilterButton) => {
         const studentMood = summary.avg_student_mood_period;
         const teacherMood = summary.avg_teacher_mood_period;
         const periodText = `(${activeFilterButton.textContent})`;
 
-        // Update total counts
         document.getElementById('total-students').textContent = summary.total_students || '0';
         document.getElementById('total-teachers').textContent = summary.total_teachers || '0';
 
-        // Update period text in card titles
         document.querySelectorAll('.period-text').forEach(span => {
             span.textContent = periodText;
         });
 
-        // Update average mood values and descriptions
         if (studentMood !== 'N/A') {
             document.getElementById('avg-student-mood').textContent = `${studentMood} (${getMoodDescription(studentMood)})`;
         } else {
@@ -43,48 +41,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    const renderChart = async (filter = 'daily') => {
+    const renderCharts = async (filter = 'daily') => {
         try {
             const response = await fetch(`api_mood_data.php?filter=${filter}`);
             if (!response.ok) throw new Error('Network response was not ok');
 
             const apiResponse = await response.json();
-            const { chartData, summary, range_start, range_end } = apiResponse;
+            const { chartData, summary, range_start, range_end, bullyingChartData } = apiResponse;
 
-            // Find the active button to pass its text to the summary function
             const activeFilterButton = document.querySelector(`.btn-group .btn#filter-${filter}`);
             if (summary && activeFilterButton) {
                 updateDashboardSummaries(summary, activeFilterButton);
             }
 
-            if (moodChart) {
-                moodChart.destroy();
-            }
-
-            let chartTitle = 'Tren Suasana Hati';
-            if (range_start && range_end) {
-                chartTitle += `: ${range_start} - ${range_end}`;
-            }
-
-            moodChart = new Chart(ctx, {
+            // Render Mood Chart
+            if (moodChart) moodChart.destroy();
+            let moodChartTitle = 'Tren Suasana Hati';
+            if (range_start && range_end) moodChartTitle += `: ${range_start} - ${range_end}`;
+            moodChart = new Chart(moodCtx, {
                 type: 'line',
                 data: chartData,
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     scales: { y: { beginAtZero: true, max: 5, ticks: { stepSize: 1 } } },
                     plugins: {
                         legend: { position: 'top' },
-                        title: { display: true, text: chartTitle },
+                        title: { display: true, text: moodChartTitle },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
                                     let label = context.dataset.label || '';
                                     if (label) label += ': ';
-                                    if (context.parsed.y !== null) {
-                                        const value = context.parsed.y.toFixed(2);
-                                        label += `${value} (${getMoodDescription(value)})`;
-                                    }
+                                    const value = context.parsed.y.toFixed(2);
+                                    label += `${value} (${getMoodDescription(value)})`;
                                     return label;
                                 }
                             }
@@ -92,27 +81,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
+
+            // Render Bullying Chart
+            if (bullyingChart) bullyingChart.destroy();
+            if (bullyingChartData) {
+                bullyingChart = new Chart(bullyingCtx, {
+                    type: 'bar',
+                    data: bullyingChartData,
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
         } catch (error) {
             console.error('Failed to fetch or render chart:', error);
-            document.getElementById('moodChart').style.display = 'none';
             const errorContainer = document.querySelector('.card-body');
-            if(errorContainer) {
-                errorContainer.innerHTML += '<p class="text-danger">Tidak dapat memuat data grafik.</p>';
-            }
+            if(errorContainer) errorContainer.innerHTML += '<p class="text-danger">Tidak dapat memuat data grafik.</p>';
         }
     };
 
-    // Event listeners for filter buttons
     const filterButtons = document.querySelectorAll('.btn-group .btn');
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             const filter = this.id.replace('filter-', '');
-            renderChart(filter);
+            renderCharts(filter);
         });
     });
 
-    // Initial chart render on page load
-    renderChart('daily');
+    renderCharts('daily');
 });

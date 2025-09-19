@@ -84,6 +84,19 @@ $stmt->close();
         </div>
     </div>
 
+    <!-- Bullying Report Section for Students -->
+    <?php if ($role === 'student'): ?>
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5>Lapor Perundungan</h5>
+        </div>
+        <div class="card-body text-center">
+            <p class="text-muted">Jika Anda melihat atau mengalami perundungan, jangan ragu untuk melaporkannya. Laporan Anda akan ditangani secara rahasia.</p>
+            <a href="bullying_form.php" class="btn btn-danger"><i class="fas fa-bullhorn me-2"></i>Buat Laporan Baru</a>
+        </div>
+    </div>
+    <?php endif; ?>
+
 </div>
 
 <?php

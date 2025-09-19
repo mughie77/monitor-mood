@@ -55,6 +55,18 @@ CREATE TABLE `mood_records` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Table structure for table `bullying_reports`
+--
+CREATE TABLE `bullying_reports` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `student_user_id` INT NOT NULL,
+  `report_description` TEXT NOT NULL,
+  `report_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `status` ENUM('Baru', 'Diproses', 'Selesai') NOT NULL DEFAULT 'Baru',
+  FOREIGN KEY (`student_user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
 -- Seeding data for testing
 -- Note: Passwords are 'password' and should be hashed with password_hash() in PHP.
 -- The hash below is for 'password'.

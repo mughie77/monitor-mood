@@ -45,6 +45,9 @@ $full_name = $_SESSION['username']; // For admins, username is fine for now.
             <a href="<?php echo base_url('admin/report_teachers.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
                 <i class="fas fa-file-alt me-2"></i>Laporan Guru
             </a>
+            <a href="<?php echo base_url('admin/bullying_reports.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+                <i class="fas fa-bullhorn me-2"></i>Laporan Perundungan
+            </a>
             <a href="<?php echo base_url('admin/manage_students.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
                 <i class="fas fa-user-graduate me-2"></i>Kelola Siswa
             </a>

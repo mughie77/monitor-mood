@@ -66,12 +66,39 @@ $summary['avg_student_mood_period'] = $period_moods['student'] ?? 'N/A';
 $summary['avg_teacher_mood_period'] = $period_moods['teacher'] ?? 'N/A';
 
 
+// --- Bullying Chart Data Logic ---
+$bullying_query = "SELECT
+                        DATE_FORMAT(report_date, '%Y-%m') AS month,
+                        COUNT(id) AS report_count
+                   FROM bullying_reports
+                   WHERE report_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+                   GROUP BY month
+                   ORDER BY month ASC";
+$bullying_result = $mysqli->query($bullying_query);
+$bullying_data = [];
+while($row = $bullying_result->fetch_assoc()) {
+    $bullying_data[$row['month']] = $row['report_count'];
+}
+
+$bullyingChartData = [
+    'labels' => array_keys($bullying_data),
+    'datasets' => [
+        [
+            'label' => 'Jumlah Laporan',
+            'data' => array_values($bullying_data),
+            'backgroundColor' => 'rgba(220, 53, 69, 0.7)',
+        ]
+    ]
+];
+
+
 // --- Final Response ---
 $response = [
     'chartData' => $chartData,
     'summary' => $summary,
     'range_start' => !empty($labels) ? reset($labels) : null,
-    'range_end' => !empty($labels) ? end($labels) : null
+    'range_end' => !empty($labels) ? end($labels) : null,
+    'bullyingChartData' => $bullyingChartData
 ];
 
 echo json_encode($response);

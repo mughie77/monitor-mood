@@ -84,9 +84,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 0.75rem 1rem;
         }
         .login-card .btn-primary {
+            background-color: #F39C12; /* Orange */
+            border-color: #F39C12;
             border-radius: 0.5rem;
             padding: 0.75rem;
             font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .login-card .btn-primary:hover {
+            background-color: #e67e22;
+            border-color: #e67e22;
         }
     </style>
 </head>

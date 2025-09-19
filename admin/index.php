@@ -6,35 +6,55 @@ require_once 'templates/header.php';
 <h1 class="mb-4">Dasbor</h1>
 
 <div class="row">
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card text-white bg-primary">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card summary-card summary-card-1">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-user-graduate me-2"></i>Total Siswa</h5>
-                <p class="card-text fs-4" id="total-students">--</p>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Total Siswa</h5>
+                        <p class="card-text fs-2 fw-bold" id="total-students">--</p>
+                    </div>
+                    <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card text-white bg-success">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card summary-card summary-card-2">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-chalkboard-teacher me-2"></i>Total Guru</h5>
-                <p class="card-text fs-4" id="total-teachers">--</p>
+                 <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Total Guru</h5>
+                        <p class="card-text fs-2 fw-bold" id="total-teachers">--</p>
+                    </div>
+                    <div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card text-white bg-info">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card summary-card summary-card-3">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-smile me-2"></i>Rata-rata Mood Siswa <span class="period-text small"></span></h5>
-                <p class="card-text fs-4" id="avg-student-mood">--</p>
+                 <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Rata-rata Mood Siswa <span class="period-text d-block small fw-normal"></span></h5>
+                        <p class="card-text fs-4 fw-bold" id="avg-student-mood">--</p>
+                    </div>
+                    <div class="card-icon"><i class="fas fa-smile"></i></div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card text-white bg-warning">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card summary-card summary-card-4">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-smile-beam me-2"></i>Rata-rata Mood Guru <span class="period-text small"></span></h5>
-                <p class="card-text fs-4" id="avg-teacher-mood">--</p>
+                 <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Rata-rata Mood Guru <span class="period-text d-block small fw-normal"></span></h5>
+                        <p class="card-text fs-4 fw-bold" id="avg-teacher-mood">--</p>
+                    </div>
+                    <div class="card-icon"><i class="fas fa-smile-beam"></i></div>
+                </div>
             </div>
         </div>
     </div>

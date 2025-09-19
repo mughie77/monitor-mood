@@ -1,6 +1,18 @@
+:root {
+    --primary-color: #F39C12; /* Orange */
+    --secondary-color: #F1C40F; /* Yellow */
+    --sidebar-bg: #2c3e50; /* Dark Blue/Grey */
+    --background-color: #f4f6f9; /* Light Grey */
+    --text-color: #34495e;
+    --card-bg: #ffffff;
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 #wrapper {
@@ -11,24 +23,33 @@ body {
 #sidebar-wrapper {
     min-height: 100vh;
     width: 250px;
-    background-color: #343a40; /* Dark background */
+    background-color: var(--sidebar-bg);
     transition: margin .25s ease-out;
 }
 
 #sidebar-wrapper .sidebar-heading {
-    padding: 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 1.2rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
     text-align: center;
+    color: var(--secondary-color);
+    border-bottom: 1px solid #4a627a;
 }
 
 #sidebar-wrapper .list-group-item {
     border: none;
     padding: 1rem 1.5rem;
+    color: #bdc3c7; /* Lighter text for contrast */
+    background-color: var(--sidebar-bg);
+    transition: background-color 0.2s, color 0.2s;
 }
 
-#sidebar-wrapper .list-group-item:hover {
-    background-color: #495057;
+#sidebar-wrapper .list-group-item:hover,
+#sidebar-wrapper .list-group-item.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-left: 5px solid var(--secondary-color);
+    padding-left: calc(1.5rem - 5px);
 }
 
 #page-content-wrapper {
@@ -57,13 +78,74 @@ body {
     }
 }
 
-/* Simple card styling for dashboard widgets */
-.card-header {
-    font-weight: bold;
-}
-
+/* General Card Styling */
 .card {
     border: none;
-    border-radius: .5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    border-radius: .75rem;
+    box-shadow: var(--card-shadow);
+    background-color: var(--card-bg);
+}
+
+.card-header {
+    font-weight: 600;
+    background-color: transparent;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem 1.25rem;
+}
+
+/* Summary Card Specifics */
+.summary-card {
+    color: #fff;
+    border-radius: .75rem;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+}
+
+.summary-card .card-title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+}
+
+.summary-card .card-icon {
+    font-size: 3rem;
+    opacity: 0.2;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.summary-card-1 { background: linear-gradient(45deg, #f39c12, #f1c40f); }
+.summary-card-2 { background: linear-gradient(45deg, #e67e22, #f39c12); }
+.summary-card-3 { background: linear-gradient(45deg, #d35400, #e67e22); }
+.summary-card-4 { background: linear-gradient(45deg, #e74c3c, #d35400); }
+
+/* Button Overrides */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: #e67e22; /* Darker orange */
+    border-color: #e67e22;
+}
+
+.btn-success {
+    background-color: #27ae60; /* Green */
+    border-color: #27ae60;
+}
+.btn-danger {
+    background-color: #c0392b; /* Red */
+    border-color: #c0392b;
+}
+
+.btn {
+    border-radius: .4rem;
+    font-weight: 500;
 }

@@ -31,7 +31,7 @@ if (isset($_SESSION['feedback'])) {
             <p class="mb-0">Silakan jelaskan kejadian yang ingin Anda laporkan di bawah ini. Laporan Anda bersifat rahasia.</p>
         </div>
         <div class="card-body">
-            <form action="app/submit_bullying_report.php" method="POST">
+            <form action="app/submit_bullying_report" method="POST">
                 <div class="mb-3">
                     <label for="report_description" class="form-label"><strong>Deskripsi Kejadian</strong></label>
                     <textarea class="form-control" id="report_description" name="report_description" rows="8" required placeholder="Jelaskan apa yang terjadi, siapa yang terlibat, di mana kejadiannya, dan kapan waktunya..."></textarea>

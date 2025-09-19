@@ -31,7 +31,7 @@ if (isset($_SESSION['feedback'])) {
             <p class="mb-0">Kami menghargai masukan Anda untuk membuat sekolah menjadi tempat yang lebih baik.</p>
         </div>
         <div class="card-body">
-            <form action="app/submit_feedback.php" method="POST">
+            <form action="app/submit_feedback" method="POST">
                 <div class="mb-3">
                     <label for="feedback_text" class="form-label"><strong>Kritik atau Saran Anda</strong></label>
                     <textarea class="form-control" id="feedback_text" name="feedback_text" rows="8" required placeholder="Tuliskan masukan Anda di sini..."></textarea>

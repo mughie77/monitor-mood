@@ -58,6 +58,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <a href="<?php echo base_url('admin/manage_admins.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_admins.php') ? 'active' : ''; ?>">
                 <i class="fas fa-user-shield me-2"></i>Kelola Admin
             </a>
+            <a href="<?php echo base_url('admin/manage_contacts.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_contacts.php') ? 'active' : ''; ?>">
+                <i class="fas fa-address-book me-2"></i>Kontak Darurat
+            </a>
             <a href="<?php echo base_url('logout.php'); ?>" class="list-group-item list-group-item-action mt-auto">
                 <i class="fas fa-sign-out-alt me-2"></i>Keluar
             </a>

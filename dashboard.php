@@ -107,6 +107,36 @@ $stmt->close();
         </div>
     </div>
     <?php endif; ?>
+
+    <!-- Emergency Contacts Section -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5><i class="fas fa-life-ring me-2"></i>Kontak Darurat</h5>
+        </div>
+        <div class="card-body">
+            <?php
+            $contacts_result = $mysqli->query("SELECT * FROM emergency_contacts ORDER BY name ASC");
+            if ($contacts_result && $contacts_result->num_rows > 0):
+            ?>
+                <ul class="list-group list-group-flush">
+                    <?php while ($contact = $contacts_result->fetch_assoc()): ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong class="d-block"><?php echo htmlspecialchars($contact['name']); ?></strong>
+                                <small class="text-muted"><?php echo htmlspecialchars($contact['description']); ?></small>
+                            </div>
+                            <a href="https://wa.me/<?php echo htmlspecialchars($contact['phone_number']); ?>" target="_blank" class="btn btn-success">
+                                <i class="fab fa-whatsapp me-2"></i>Hubungi
+                            </a>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else: ?>
+                <p class="text-muted text-center">Belum ada kontak darurat yang dikonfigurasi.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+
 </div>
 
 <?php

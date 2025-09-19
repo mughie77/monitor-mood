@@ -78,6 +78,16 @@ CREATE TABLE `feedback` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Table structure for table `emergency_contacts`
+--
+CREATE TABLE `emergency_contacts` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `phone_number` VARCHAR(25) NOT NULL,
+  `description` VARCHAR(255) NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
 -- Seeding data for testing
 -- Note: Passwords are 'password' and should be hashed with password_hash() in PHP.
 -- The hash below is for 'password'.

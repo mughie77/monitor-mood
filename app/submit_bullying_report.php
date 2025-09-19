@@ -7,7 +7,7 @@ start_session();
 if (!is_logged_in() || get_user_role() !== 'student') {
     // Set feedback message and redirect
     $_SESSION['feedback'] = ['type' => 'danger', 'message' => 'Akses tidak sah.'];
-    redirect('../bullying_form.php');
+    redirect('../bullying_form');
 }
 
 // Check if the form was submitted
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($description)) {
         $_SESSION['feedback'] = ['type' => 'danger', 'message' => 'Deskripsi laporan tidak boleh kosong.'];
-        redirect('../bullying_form.php');
+        redirect('../bullying_form');
     }
 
     // Prepare and execute the insert statement
@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $mysqli->close();
 
-    redirect('../bullying_form.php');
+    redirect('../bullying_form');
 
 } else {
     // Redirect if accessed directly
-    redirect('../dashboard.php');
+    redirect('../dashboard');
 }
 ?>

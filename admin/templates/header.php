@@ -34,34 +34,34 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <div id="sidebar-wrapper">
     <div class="sidebar-heading">Admin SI-SONYA</div>
         <div class="list-group list-group-flush">
-            <a href="<?php echo base_url('admin/index.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/index'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">
                 <i class="fas fa-tachometer-alt me-2"></i>Dasbor
             </a>
-            <a href="<?php echo base_url('admin/report_students.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'report_students.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/report_students'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'report_students.php') ? 'active' : ''; ?>">
                 <i class="fas fa-file-alt me-2"></i>Laporan Siswa
             </a>
-            <a href="<?php echo base_url('admin/report_teachers.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'report_teachers.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/report_teachers'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'report_teachers.php') ? 'active' : ''; ?>">
                 <i class="fas fa-file-alt me-2"></i>Laporan Guru
             </a>
-            <a href="<?php echo base_url('admin/bullying_reports.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'bullying_reports.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/bullying_reports'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'bullying_reports.php') ? 'active' : ''; ?>">
                 <i class="fas fa-bullhorn me-2"></i>Laporan Perundungan
             </a>
-            <a href="<?php echo base_url('admin/view_feedback.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'view_feedback.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/view_feedback'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'view_feedback.php') ? 'active' : ''; ?>">
                 <i class="fas fa-lightbulb me-2"></i>Kritik dan Saran
             </a>
-            <a href="<?php echo base_url('admin/manage_students.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_students.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/manage_students'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_students.php') ? 'active' : ''; ?>">
                 <i class="fas fa-user-graduate me-2"></i>Kelola Siswa
             </a>
-            <a href="<?php echo base_url('admin/manage_teachers.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_teachers.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/manage_teachers'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_teachers.php') ? 'active' : ''; ?>">
                 <i class="fas fa-chalkboard-teacher me-2"></i>Kelola Guru
             </a>
-            <a href="<?php echo base_url('admin/manage_admins.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_admins.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/manage_admins'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_admins.php') ? 'active' : ''; ?>">
                 <i class="fas fa-user-shield me-2"></i>Kelola Admin
             </a>
-            <a href="<?php echo base_url('admin/manage_contacts.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_contacts.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('admin/manage_contacts'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_contacts.php') ? 'active' : ''; ?>">
                 <i class="fas fa-address-book me-2"></i>Kontak Darurat
             </a>
-            <a href="<?php echo base_url('logout.php'); ?>" class="list-group-item list-group-item-action mt-auto">
+            <a href="<?php echo base_url('logout'); ?>" class="list-group-item list-group-item-action mt-auto">
                 <i class="fas fa-sign-out-alt me-2"></i>Keluar
             </a>
         </div>

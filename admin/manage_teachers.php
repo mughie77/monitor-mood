@@ -93,7 +93,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 <div class="card">
     <div class="card-header"><h5><?php echo $action === 'edit' ? 'Ubah Guru' : 'Tambah Guru Baru'; ?></h5></div>
     <div class="card-body">
-        <form action="manage_teachers.php" method="POST">
+        <form action="manage_teachers" method="POST">
             <?php if ($action === 'edit' && $teacher_data): ?>
                 <input type="hidden" name="user_id" value="<?php echo $teacher_data['id']; ?>">
             <?php endif; ?>
@@ -115,7 +115,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 <?php if ($action === 'edit'): ?><small class="form-text text-muted">Biarkan kosong untuk mempertahankan kata sandi saat ini.</small><?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary"><?php echo $action === 'edit' ? 'Perbarui Guru' : 'Tambah Guru'; ?></button>
-            <a href="manage_teachers.php" class="btn btn-secondary">Batal</a>
+            <a href="manage_teachers" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 </div>

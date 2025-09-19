@@ -96,7 +96,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
         <h5><?php echo $action === 'edit' ? 'Ubah Siswa' : 'Tambah Siswa Baru'; ?></h5>
     </div>
     <div class="card-body">
-        <form action="manage_students.php" method="POST">
+        <form action="manage_students" method="POST">
             <?php if ($action === 'edit' && $student_data): ?>
                 <input type="hidden" name="user_id" value="<?php echo $student_data['id']; ?>">
             <?php endif; ?>
@@ -125,7 +125,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 <?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary"><?php echo $action === 'edit' ? 'Perbarui Siswa' : 'Tambah Siswa'; ?></button>
-            <a href="manage_students.php" class="btn btn-secondary">Batal</a>
+            <a href="manage_students" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 </div>

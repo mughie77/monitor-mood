@@ -65,7 +65,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 <div class="card">
     <div class="card-header"><h5><?php echo $action === 'edit' ? 'Ubah Kontak' : 'Tambah Kontak Baru'; ?></h5></div>
     <div class="card-body">
-        <form action="manage_contacts.php" method="POST">
+        <form action="manage_contacts" method="POST">
             <input type="hidden" name="save_contact" value="1">
             <?php if ($action === 'edit' && $contact_data): ?>
                 <input type="hidden" name="id" value="<?php echo $contact_data['id']; ?>">
@@ -84,7 +84,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 <input type="text" class="form-control" id="description" name="description" value="<?php echo htmlspecialchars($contact_data['description'] ?? ''); ?>">
             </div>
             <button type="submit" class="btn btn-primary"><?php echo $action === 'edit' ? 'Perbarui' : 'Tambah'; ?></button>
-            <a href="manage_contacts.php" class="btn btn-secondary">Batal</a>
+            <a href="manage_contacts" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 </div>

@@ -6,7 +6,7 @@ start_session();
 // Only logged-in students can submit
 if (!is_logged_in() || get_user_role() !== 'student') {
     $_SESSION['feedback'] = ['type' => 'danger', 'message' => 'Akses tidak sah.'];
-    redirect('../feedback_form.php');
+    redirect('../feedback_form');
 }
 
 // Check if the form was submitted
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($feedback_text)) {
         $_SESSION['feedback'] = ['type' => 'danger', 'message' => 'Kritik dan saran tidak boleh kosong.'];
-        redirect('../feedback_form.php');
+        redirect('../feedback_form');
     }
 
     // Prepare and execute the insert statement
@@ -32,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $mysqli->close();
 
-    redirect('../feedback_form.php');
+    redirect('../feedback_form');
 
 } else {
     // Redirect if accessed directly
-    redirect('../dashboard.php');
+    redirect('../dashboard');
 }
 ?>

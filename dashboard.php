@@ -38,7 +38,7 @@ $stmt->close();
             <h5 class="text-uppercase" style="color: var(--primary-color);">Aplikasi SI-SONYA</h5>
             <h2 class="mb-0">Selamat Datang, <?php echo htmlspecialchars($full_name); ?>!</h2>
         </div>
-        <a href="logout.php" class="btn btn-outline-danger">Keluar</a>
+        <a href="logout" class="btn btn-outline-danger">Keluar</a>
     </div>
 
     <div id="mood-response-message"></div>
@@ -91,7 +91,7 @@ $stmt->close();
                     <i class="fas fa-bullhorn fa-3x mb-3 text-warning"></i>
                     <h5>Lapor Perundungan</h5>
                     <p class="text-muted small">Laporkan perundungan secara rahasia untuk menjaga lingkungan sekolah tetap aman.</p>
-                    <a href="bullying_form.php" class="btn btn-warning stretched-link">Buat Laporan</a>
+                    <a href="bullying_form" class="btn btn-warning stretched-link">Buat Laporan</a>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@ $stmt->close();
                     <i class="fas fa-lightbulb fa-3x mb-3 text-info"></i>
                     <h5>Kritik dan Saran</h5>
                     <p class="text-muted small">Punya ide atau masukan untuk membuat sekolah lebih baik? Sampaikan di sini.</p>
-                    <a href="feedback_form.php" class="btn btn-info stretched-link">Beri Masukan</a>
+                    <a href="feedback_form" class="btn btn-info stretched-link">Beri Masukan</a>
                 </div>
             </div>
         </div>

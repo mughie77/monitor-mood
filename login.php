@@ -7,9 +7,9 @@ start_session();
 if (is_logged_in()) {
     $role = get_user_role();
     if ($role === 'admin') {
-        redirect('admin/index.php');
+        redirect('admin/index');
     } else {
-        redirect('dashboard.php');
+        redirect('dashboard');
     }
 }
 
@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Redirect based on role
                 if ($user['role'] === 'admin') {
-                    redirect('admin/index.php');
+                    redirect('admin/index');
                 } else {
-                    redirect('dashboard.php');
+                    redirect('dashboard');
                 }
             } else {
                 $error_message = 'Nama pengguna atau kata sandi tidak valid.';

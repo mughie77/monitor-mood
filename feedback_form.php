@@ -17,7 +17,7 @@ if (isset($_SESSION['feedback'])) {
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Formulir Kritik dan Saran</h2>
-        <a href="dashboard.php" class="btn btn-outline-secondary">Kembali ke Dasbor</a>
+        <a href="dashboard" class="btn btn-outline-secondary">Kembali ke Dasbor</a>
     </div>
 
     <?php if (!empty($feedback_message)): ?>

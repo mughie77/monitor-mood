@@ -88,10 +88,10 @@ $stmt->close();
         <div class="col-md-6">
             <div class="card action-card">
                 <div class="card-body text-center">
-                    <i class="fas fa-bullhorn fa-3x mb-3 text-danger"></i>
+                    <i class="fas fa-bullhorn fa-3x mb-3 text-warning"></i>
                     <h5>Lapor Perundungan</h5>
                     <p class="text-muted small">Laporkan perundungan secara rahasia untuk menjaga lingkungan sekolah tetap aman.</p>
-                    <a href="bullying_form.php" class="btn btn-danger stretched-link">Buat Laporan</a>
+                    <a href="bullying_form.php" class="btn btn-warning stretched-link">Buat Laporan</a>
                 </div>
             </div>
         </div>

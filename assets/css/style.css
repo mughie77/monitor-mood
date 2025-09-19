@@ -71,14 +71,19 @@ body {
     height: 100%;
 }
 .action-card .btn {
+    color: #fff;
+    font-weight: 500;
+}
+.action-card .btn.btn-warning {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    color: #fff;
 }
-.action-card .btn-info {
+.action-card .btn.btn-info {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
+    color: var(--text-color);
 }
+
 
 /* General Button Overrides for non-admin pages */
 .btn-primary {

@@ -1,16 +1,14 @@
 <?php
-// The path to the core functions file is relative to the file including this header.
-// So, the path needs to be adjusted based on the location of the calling file.
-// A better approach is to define a ROOT_PATH constant in a central config file.
-// For now, we'll assume the including file is in the `admin` directory.
 require_once __DIR__ . '/../../app/functions.php';
 
 // Protect the page for admin users only
 protect_page(['admin']);
 
 // Get user's name for the welcome message
-$full_name = $_SESSION['username']; // For admins, username is fine for now.
+$full_name = $_SESSION['username'];
 
+// Get current page for active menu link
+$current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -33,34 +31,34 @@ $full_name = $_SESSION['username']; // For admins, username is fine for now.
 
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-dark border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading text-white">Admin Pelacak Suasana Hati</div>
+    <div id="sidebar-wrapper">
+        <div class="sidebar-heading">Admin Pelacak Suasana Hati</div>
         <div class="list-group list-group-flush">
-            <a href="<?php echo base_url('admin/index.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/index.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">
                 <i class="fas fa-tachometer-alt me-2"></i>Dasbor
             </a>
-            <a href="<?php echo base_url('admin/report_students.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/report_students.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'report_students.php') ? 'active' : ''; ?>">
                 <i class="fas fa-file-alt me-2"></i>Laporan Siswa
             </a>
-            <a href="<?php echo base_url('admin/report_teachers.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/report_teachers.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'report_teachers.php') ? 'active' : ''; ?>">
                 <i class="fas fa-file-alt me-2"></i>Laporan Guru
             </a>
-            <a href="<?php echo base_url('admin/bullying_reports.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/bullying_reports.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'bullying_reports.php') ? 'active' : ''; ?>">
                 <i class="fas fa-bullhorn me-2"></i>Laporan Perundungan
             </a>
-            <a href="<?php echo base_url('admin/view_feedback.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/view_feedback.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'view_feedback.php') ? 'active' : ''; ?>">
                 <i class="fas fa-lightbulb me-2"></i>Kritik dan Saran
             </a>
-            <a href="<?php echo base_url('admin/manage_students.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/manage_students.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_students.php') ? 'active' : ''; ?>">
                 <i class="fas fa-user-graduate me-2"></i>Kelola Siswa
             </a>
-            <a href="<?php echo base_url('admin/manage_teachers.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/manage_teachers.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_teachers.php') ? 'active' : ''; ?>">
                 <i class="fas fa-chalkboard-teacher me-2"></i>Kelola Guru
             </a>
-            <a href="<?php echo base_url('admin/manage_admins.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+            <a href="<?php echo base_url('admin/manage_admins.php'); ?>" class="list-group-item list-group-item-action <?php echo ($current_page == 'manage_admins.php') ? 'active' : ''; ?>">
                 <i class="fas fa-user-shield me-2"></i>Kelola Admin
             </a>
-            <a href="<?php echo base_url('logout.php'); ?>" class="list-group-item list-group-item-action bg-dark text-white mt-auto">
+            <a href="<?php echo base_url('logout.php'); ?>" class="list-group-item list-group-item-action mt-auto">
                 <i class="fas fa-sign-out-alt me-2"></i>Keluar
             </a>
         </div>

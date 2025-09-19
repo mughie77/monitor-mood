@@ -67,6 +67,17 @@ CREATE TABLE `bullying_reports` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Table structure for table `feedback`
+--
+CREATE TABLE `feedback` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `student_user_id` INT NOT NULL,
+  `feedback_text` TEXT NOT NULL,
+  `submission_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`student_user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
 -- Seeding data for testing
 -- Note: Passwords are 'password' and should be hashed with password_hash() in PHP.
 -- The hash below is for 'password'.

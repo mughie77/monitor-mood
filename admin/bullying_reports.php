@@ -40,72 +40,71 @@ $query = "SELECT
 $result = $mysqli->query($query);
 ?>
 
-<h1 class="mb-4">Daftar Laporan Perundungan</h1>
+<h1 class="text-3xl font-bold text-gray-800 mb-8">Laporan Perundungan</h1>
 
 <?php if (!empty($feedback['message'])): ?>
-<div class="alert alert-<?php echo $feedback['type']; ?> alert-dismissible fade show" role="alert">
-    <?php echo $feedback['message']; ?>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="w-full <?php echo $feedback['type'] === 'success' ? 'bg-green-100 border-green-500 text-green-700' : 'bg-red-100 border-red-500 text-red-700'; ?> border-l-4 p-4 mb-6 rounded-r-lg shadow-sm" role="alert">
+    <p class="text-sm font-bold"><?php echo $feedback['message']; ?></p>
 </div>
 <?php endif; ?>
 
-<div class="card">
-    <div class="card-header">
-        Semua Laporan yang Masuk
+<div class="bg-white rounded-3xl shadow-sm overflow-hidden border-b-4 border-gray-200">
+    <div class="bg-gray-50 px-8 py-4 border-b">
+        <h5 class="font-bold text-gray-700">Semua Laporan yang Masuk</h5>
     </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Pelapor</th>
-                        <th>Kelas</th>
-                        <th>Deskripsi Singkat</th>
-                        <th>Tanggal Laporan</th>
-                        <th>Status</th>
-                        <th style="width: 20%;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($result && $result->num_rows > 0): ?>
-                        <?php while ($row = $result->fetch_assoc()): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($row['student_name']); ?></td>
-                                <td><?php echo htmlspecialchars($row['student_class']); ?></td>
-                                <td><?php echo htmlspecialchars(substr($row['report_description'], 0, 100)); ?>...</td>
-                                <td><?php echo date('d M Y, H:i', strtotime($row['report_date'])); ?></td>
-                                <td>
-                                    <?php
-                                    $status_class = '';
-                                    switch ($row['status']) {
-                                        case 'Baru': $status_class = 'bg-primary'; break;
-                                        case 'Diproses': $status_class = 'bg-warning text-dark'; break;
-                                        case 'Selesai': $status_class = 'bg-success'; break;
-                                    }
-                                    ?>
-                                    <span class="badge <?php echo $status_class; ?>"><?php echo $row['status']; ?></span>
-                                </td>
-                                <td>
-                                    <form action="bullying_reports.php" method="POST" class="d-flex">
-                                        <input type="hidden" name="report_id" value="<?php echo $row['id']; ?>">
-                                        <select name="new_status" class="form-select form-select-sm me-2">
-                                            <option value="Baru" <?php if($row['status'] == 'Baru') echo 'selected'; ?>>Baru</option>
-                                            <option value="Diproses" <?php if($row['status'] == 'Diproses') echo 'selected'; ?>>Diproses</option>
-                                            <option value="Selesai" <?php if($row['status'] == 'Selesai') echo 'selected'; ?>>Selesai</option>
-                                        </select>
-                                        <button type="submit" name="update_status" class="btn btn-sm btn-primary">Update</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="6" class="text-center">Tidak ada laporan perundungan yang ditemukan.</td>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-gray-50 border-b">
+                    <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Pelapor</th>
+                    <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Kelas</th>
+                    <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Deskripsi Singkat</th>
+                    <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Tanggal</th>
+                    <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Status</th>
+                    <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 text-gray-800 font-medium"><?php echo htmlspecialchars($row['student_name']); ?></td>
+                            <td class="px-8 py-4 text-gray-600"><?php echo htmlspecialchars($row['student_class']); ?></td>
+                            <td class="px-8 py-4 text-gray-600 text-sm italic">"<?php echo htmlspecialchars(substr($row['report_description'], 0, 100)); ?>..."</td>
+                            <td class="px-8 py-4 text-gray-600 text-xs"><?php echo date('d M Y, H:i', strtotime($row['report_date'])); ?></td>
+                            <td class="px-8 py-4">
+                                <?php
+                                $status_classes = '';
+                                switch ($row['status']) {
+                                    case 'Baru': $status_classes = 'bg-blue-100 text-blue-600'; break;
+                                    case 'Diproses': $status_classes = 'bg-yellow-100 text-yellow-600'; break;
+                                    case 'Selesai': $status_classes = 'bg-green-100 text-green-600'; break;
+                                }
+                                ?>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold <?php echo $status_classes; ?>"><?php echo $row['status']; ?></span>
+                            </td>
+                            <td class="px-8 py-4">
+                                <form action="bullying_reports.php" method="POST" class="flex items-center gap-2">
+                                    <input type="hidden" name="report_id" value="<?php echo $row['id']; ?>">
+                                    <select name="new_status" class="text-sm border rounded-lg px-2 py-1 outline-none focus:ring-2 focus:ring-fun-purple">
+                                        <option value="Baru" <?php if($row['status'] == 'Baru') echo 'selected'; ?>>Baru</option>
+                                        <option value="Diproses" <?php if($row['status'] == 'Diproses') echo 'selected'; ?>>Diproses</option>
+                                        <option value="Selesai" <?php if($row['status'] == 'Selesai') echo 'selected'; ?>>Selesai</option>
+                                    </select>
+                                    <button type="submit" name="update_status" class="bg-fun-purple text-white p-2 rounded-lg hover:bg-opacity-90 transition" title="Update Status">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="px-8 py-10 text-center text-gray-400 italic">Tidak ada laporan perundungan yang ditemukan.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 

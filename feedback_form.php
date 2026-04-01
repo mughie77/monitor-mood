@@ -27,7 +27,7 @@ if (isset($_SESSION['feedback'])) {
         </div>
     <?php endif; ?>
 
-    <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-t-8 border-fun-purple">
+    <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-t-8 border-fun-blue">
         <div class="bg-gray-50 px-8 py-4 border-b">
             <p class="text-gray-600">Kami menghargai masukan Anda untuk membuat sekolah menjadi tempat yang lebih baik.</p>
         </div>
@@ -35,10 +35,10 @@ if (isset($_SESSION['feedback'])) {
             <form action="app/submit_feedback" method="POST">
                 <div class="mb-6">
                     <label for="feedback_text" class="block text-sm font-bold text-gray-700 mb-2">Kritik atau Saran Anda</label>
-                    <textarea class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="feedback_text" name="feedback_text" rows="8" required placeholder="Tuliskan masukan Anda di sini..."></textarea>
+                    <textarea class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="feedback_text" name="feedback_text" rows="8" required placeholder="Tuliskan masukan Anda di sini..."></textarea>
                 </div>
                 <div class="flex justify-end">
-                    <button type="submit" class="bg-fun-purple hover:bg-opacity-90 text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform transition hover:-translate-y-1 active:scale-95 flex items-center">
+                    <button type="submit" class="bg-fun-blue hover:bg-opacity-90 text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform transition hover:-translate-y-1 active:scale-95 flex items-center">
                         <i class="fas fa-paper-plane mr-2"></i>Kirim Masukan
                     </button>
                 </div>

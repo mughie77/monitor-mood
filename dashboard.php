@@ -36,7 +36,7 @@ $stmt->close();
     <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <div>
             <h5 class="text-fun-pink font-bold uppercase tracking-wider text-sm mb-1">Aplikasi SI-SONYA</h5>
-            <h2 class="text-3xl font-extrabold text-gray-800">Selamat Datang, <span class="text-fun-purple"><?php echo htmlspecialchars($full_name); ?></span>!</h2>
+            <h2 class="text-3xl font-extrabold text-gray-800">Selamat Datang, <span class="text-fun-blue"><?php echo htmlspecialchars($full_name); ?></span>!</h2>
         </div>
         <a href="logout" class="px-6 py-2 border-2 border-red-400 text-red-500 font-bold rounded-full hover:bg-red-400 hover:text-white transition">Keluar</a>
     </div>
@@ -84,9 +84,9 @@ $stmt->close();
                         </div>
                         <div class="mood-option group cursor-pointer text-center transition transform hover:-translate-y-2" data-mood-value="5">
                             <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-100 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-blue-100 transition">
-                                <i class="fas fa-face-grin-stars text-3xl md:text-4xl text-gray-400 group-hover:text-fun-blue transition"></i>
+                                <i class="fas fa-face-grin-stars text-3xl md:text-4xl text-gray-400 group-hover:text-fun-green transition"></i>
                             </div>
-                            <span class="text-sm font-semibold text-gray-600 group-hover:text-fun-blue">Luar Biasa</span>
+                            <span class="text-sm font-semibold text-gray-600 group-hover:text-fun-green">Luar Biasa</span>
                         </div>
                     </div>
                 </div>
@@ -105,20 +105,20 @@ $stmt->close();
             <p class="text-gray-500 mb-6 text-sm">Laporkan perundungan secara rahasia untuk menjaga lingkungan sekolah tetap aman.</p>
             <a href="bullying_form" class="inline-block bg-fun-pink text-white font-bold px-6 py-2 rounded-xl hover:bg-opacity-90 transition stretched-link">Buat Laporan</a>
         </div>
-        <div class="bg-white p-8 rounded-3xl shadow-lg border-t-8 border-fun-purple relative group hover:shadow-xl transition">
-            <div class="w-16 h-16 bg-blue-100 text-fun-purple rounded-full flex items-center justify-center mb-6">
+        <div class="bg-white p-8 rounded-3xl shadow-lg border-t-8 border-fun-blue relative group hover:shadow-xl transition">
+            <div class="w-16 h-16 bg-blue-100 text-fun-blue rounded-full flex items-center justify-center mb-6">
                 <i class="fas fa-lightbulb text-2xl"></i>
             </div>
             <h5 class="text-xl font-bold text-gray-800 mb-2">Kritik dan Saran</h5>
             <p class="text-gray-500 mb-6 text-sm">Punya ide atau masukan untuk membuat sekolah lebih baik? Sampaikan di sini.</p>
-            <a href="feedback_form" class="inline-block bg-fun-purple text-white font-bold px-6 py-2 rounded-xl hover:bg-opacity-90 transition stretched-link">Beri Masukan</a>
+            <a href="feedback_form" class="inline-block bg-fun-blue text-white font-bold px-6 py-2 rounded-xl hover:bg-opacity-90 transition stretched-link">Beri Masukan</a>
         </div>
     </div>
     <?php endif; ?>
 
     <!-- Emergency Contacts Section -->
     <div class="bg-white rounded-3xl shadow-lg mt-8 overflow-hidden">
-        <div class="bg-fun-blue px-8 py-4 flex items-center">
+        <div class="bg-fun-green px-8 py-4 flex items-center">
             <i class="fas fa-life-ring text-white text-xl mr-3"></i>
             <h5 class="text-white font-bold">Kontak Darurat</h5>
         </div>

@@ -2,7 +2,11 @@
 -- Version 1.0
 
 -- Drop tables if they exist to start fresh
+-- Order matters due to foreign key constraints
 DROP TABLE IF EXISTS `mood_records`;
+DROP TABLE IF EXISTS `bullying_reports`;
+DROP TABLE IF EXISTS `feedback`;
+DROP TABLE IF EXISTS `emergency_contacts`;
 DROP TABLE IF EXISTS `students`;
 DROP TABLE IF EXISTS `teachers`;
 DROP TABLE IF EXISTS `users`;
@@ -26,6 +30,7 @@ CREATE TABLE `teachers` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `full_name` VARCHAR(255) NOT NULL,
+  `class` VARCHAR(50) DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -37,6 +42,7 @@ CREATE TABLE `students` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `full_name` VARCHAR(255) NOT NULL,
+  `class` VARCHAR(50) DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

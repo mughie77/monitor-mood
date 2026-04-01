@@ -68,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     colors: {
                         'fun-pink': '#FF6B6B',
                         'fun-yellow': '#FFD93D',
-                        'fun-blue': '#6BCB77',
+                        'fun-green': '#6BCB77',
                         'fun-orange': '#FF9248',
-                        'fun-purple': '#4D96FF',
+                        'fun-blue': '#4D96FF',
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="bg-gradient-to-br from-fun-pink via-fun-orange to-fun-yellow min-h-screen flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden p-8 md:p-10">
         <div class="flex flex-col items-center">
-            <div class="w-20 h-20 bg-gradient-to-tr from-fun-purple to-fun-pink rounded-2xl flex items-center justify-center text-white text-4xl font-bold shadow-lg mb-6 transform -rotate-6">
+            <div class="w-20 h-20 bg-gradient-to-tr from-fun-blue to-fun-pink rounded-2xl flex items-center justify-center text-white text-4xl font-bold shadow-lg mb-6 transform -rotate-6">
                 SS
             </div>
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">Login SI-SONYA</h2>
@@ -101,13 +101,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="login" method="POST" class="w-full space-y-5">
                 <div>
                     <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">Nama Pengguna atau Email</label>
-                    <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="username" name="username" required placeholder="Masukkan username">
+                    <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="username" name="username" required placeholder="Masukkan username">
                 </div>
                 <div>
                     <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">Kata Sandi</label>
-                    <input type="password" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="password" name="password" required placeholder="••••••••">
+                    <input type="password" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="password" name="password" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="w-full bg-fun-purple hover:bg-opacity-90 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transform transition hover:-translate-y-1 active:scale-95 mt-4">
+                <button type="submit" class="w-full bg-fun-blue hover:bg-opacity-90 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transform transition hover:-translate-y-1 active:scale-95 mt-4">
                     Masuk
                 </button>
             </form>

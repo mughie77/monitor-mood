@@ -8,6 +8,7 @@ $feedback = ['type' => '', 'message' => ''];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = isset($_POST['user_id']) ? (int)$_POST['user_id'] : null;
     $full_name = sanitize_input($_POST['full_name']);
+    $class = sanitize_input($_POST['class']);
     $username = sanitize_input($_POST['username']);
     $email = sanitize_input($_POST['email']);
     $password = $_POST['password'];
@@ -26,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt_pass->execute();
             }
 
-            $stmt_teacher = $mysqli->prepare("UPDATE teachers SET full_name = ? WHERE user_id = ?");
-            $stmt_teacher->bind_param("si", $full_name, $user_id);
+            $stmt_teacher = $mysqli->prepare("UPDATE teachers SET full_name = ?, class = ? WHERE user_id = ?");
+            $stmt_teacher->bind_param("ssi", $full_name, $class, $user_id);
             $stmt_teacher->execute();
             $feedback = ['type' => 'success', 'message' => 'Guru berhasil diperbarui!'];
         } else { // --- CREATE ---
@@ -41,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $new_user_id = $mysqli->insert_id;
 
-            $stmt_teacher = $mysqli->prepare("INSERT INTO teachers (user_id, full_name) VALUES (?, ?)");
-            $stmt_teacher->bind_param("is", $new_user_id, $full_name);
+            $stmt_teacher = $mysqli->prepare("INSERT INTO teachers (user_id, full_name, class) VALUES (?, ?, ?)");
+            $stmt_teacher->bind_param("iss", $new_user_id, $full_name, $class);
             $stmt_teacher->execute();
             $feedback = ['type' => 'success', 'message' => 'Guru berhasil ditambahkan!'];
         }
@@ -75,7 +76,7 @@ $teacher_data = null;
 
 if ($action === 'edit' && isset($_GET['id'])) {
     $teacher_id_to_edit = (int)$_GET['id'];
-    $stmt = $mysqli->prepare("SELECT u.id, u.username, u.email, t.full_name FROM users u JOIN teachers t ON u.id = t.user_id WHERE u.id = ? AND u.role = 'teacher'");
+    $stmt = $mysqli->prepare("SELECT u.id, u.username, u.email, t.full_name, t.class FROM users u JOIN teachers t ON u.id = t.user_id WHERE u.id = ? AND u.role = 'teacher'");
     $stmt->bind_param("i", $teacher_id_to_edit);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -106,6 +107,10 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-orange focus:border-transparent outline-none transition" id="full_name" name="full_name" value="<?php echo htmlspecialchars($teacher_data['full_name'] ?? ''); ?>" required>
             </div>
             <div>
+                <label for="class" class="block text-sm font-semibold text-gray-700 mb-2">Wali Kelas</label>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-orange focus:border-transparent outline-none transition" id="class" name="class" value="<?php echo htmlspecialchars($teacher_data['class'] ?? ''); ?>">
+            </div>
+            <div>
                 <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">Nama Pengguna</label>
                 <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-orange focus:border-transparent outline-none transition" id="username" name="username" value="<?php echo htmlspecialchars($teacher_data['username'] ?? ''); ?>" required>
             </div>
@@ -129,7 +134,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 </div>
 <?php else: ?>
 <div class="mb-6">
-    <a href="?action=add" class="inline-flex items-center bg-fun-blue hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95"><i class="fas fa-plus mr-2"></i>Tambah Guru Baru</a>
+    <a href="?action=add" class="inline-flex items-center bg-fun-green hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95"><i class="fas fa-plus mr-2"></i>Tambah Guru Baru</a>
 </div>
 <div class="bg-white rounded-3xl shadow-sm overflow-hidden border-b-4 border-gray-200">
     <div class="bg-gray-50 px-8 py-4 border-b">
@@ -140,6 +145,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
             <thead>
                 <tr class="bg-gray-50 border-b">
                     <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Nama Lengkap</th>
+                    <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Wali Kelas</th>
                     <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Username</th>
                     <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Email</th>
                     <th class="px-8 py-4 font-bold text-gray-600 text-sm uppercase tracking-wider">Aksi</th>
@@ -147,11 +153,12 @@ if ($action === 'edit' && isset($_GET['id'])) {
             </thead>
             <tbody class="divide-y divide-gray-100">
                 <?php
-                $result = $mysqli->query("SELECT u.id, u.username, u.email, t.full_name FROM users u JOIN teachers t ON u.id = t.user_id WHERE u.role = 'teacher' ORDER BY t.full_name ASC");
+                $result = $mysqli->query("SELECT u.id, u.username, u.email, t.full_name, t.class FROM users u JOIN teachers t ON u.id = t.user_id WHERE u.role = 'teacher' ORDER BY t.full_name ASC");
                 if ($result && $result->num_rows > 0):
                     while ($teacher = $result->fetch_assoc()): ?>
                         <tr class="hover:bg-gray-50 transition">
                             <td class="px-8 py-4 text-gray-800 font-medium"><?php echo htmlspecialchars($teacher['full_name']); ?></td>
+                            <td class="px-8 py-4 text-gray-600"><?php echo htmlspecialchars($teacher['class']); ?></td>
                             <td class="px-8 py-4 text-gray-600"><?php echo htmlspecialchars($teacher['username']); ?></td>
                             <td class="px-8 py-4 text-gray-600"><?php echo htmlspecialchars($teacher['email']); ?></td>
                             <td class="px-8 py-4 flex gap-2">

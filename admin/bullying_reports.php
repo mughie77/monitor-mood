@@ -86,12 +86,12 @@ $result = $mysqli->query($query);
                             <td class="px-8 py-4">
                                 <form action="bullying_reports.php" method="POST" class="flex items-center gap-2">
                                     <input type="hidden" name="report_id" value="<?php echo $row['id']; ?>">
-                                    <select name="new_status" class="text-sm border rounded-lg px-2 py-1 outline-none focus:ring-2 focus:ring-fun-purple">
+                                    <select name="new_status" class="text-sm border rounded-lg px-2 py-1 outline-none focus:ring-2 focus:ring-fun-blue">
                                         <option value="Baru" <?php if($row['status'] == 'Baru') echo 'selected'; ?>>Baru</option>
                                         <option value="Diproses" <?php if($row['status'] == 'Diproses') echo 'selected'; ?>>Diproses</option>
                                         <option value="Selesai" <?php if($row['status'] == 'Selesai') echo 'selected'; ?>>Selesai</option>
                                     </select>
-                                    <button type="submit" name="update_status" class="bg-fun-purple text-white p-2 rounded-lg hover:bg-opacity-90 transition" title="Update Status">
+                                    <button type="submit" name="update_status" class="bg-fun-blue text-white p-2 rounded-lg hover:bg-opacity-90 transition" title="Update Status">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </form>

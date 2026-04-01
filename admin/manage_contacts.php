@@ -64,7 +64,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 <?php endif; ?>
 
 <?php if ($action === 'add' || $action === 'edit'): ?>
-<div class="bg-white rounded-3xl shadow-sm overflow-hidden border-t-8 border-fun-blue max-w-2xl">
+<div class="bg-white rounded-3xl shadow-sm overflow-hidden border-t-8 border-fun-green max-w-2xl">
     <div class="bg-gray-50 px-8 py-4 border-b">
         <h5 class="font-bold text-gray-700"><?php echo $action === 'edit' ? 'Ubah Kontak' : 'Tambah Kontak Baru'; ?></h5>
     </div>
@@ -76,19 +76,19 @@ if ($action === 'edit' && isset($_GET['id'])) {
             <?php endif; ?>
             <div>
                 <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Nama Kontak</label>
-                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="name" name="name" value="<?php echo htmlspecialchars($contact_data['name'] ?? ''); ?>" required>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-green focus:border-transparent outline-none transition" id="name" name="name" value="<?php echo htmlspecialchars($contact_data['name'] ?? ''); ?>" required>
             </div>
             <div>
                 <label for="phone_number" class="block text-sm font-semibold text-gray-700 mb-2">Nomor WhatsApp</label>
-                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="phone_number" name="phone_number" value="<?php echo htmlspecialchars($contact_data['phone_number'] ?? ''); ?>" required placeholder="6281234567890">
+                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-green focus:border-transparent outline-none transition" id="phone_number" name="phone_number" value="<?php echo htmlspecialchars($contact_data['phone_number'] ?? ''); ?>" required placeholder="6281234567890">
                 <p class="mt-1 text-xs text-gray-400 italic">Gunakan format internasional tanpa tanda '+' atau spasi.</p>
             </div>
             <div>
                 <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi (Opsional)</label>
-                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="description" name="description" value="<?php echo htmlspecialchars($contact_data['description'] ?? ''); ?>">
+                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-green focus:border-transparent outline-none transition" id="description" name="description" value="<?php echo htmlspecialchars($contact_data['description'] ?? ''); ?>">
             </div>
             <div class="flex gap-3 pt-4">
-                <button type="submit" class="bg-fun-blue hover:bg-opacity-90 text-white font-bold px-6 py-2 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95"><?php echo $action === 'edit' ? 'Perbarui' : 'Tambah'; ?></button>
+                <button type="submit" class="bg-fun-green hover:bg-opacity-90 text-white font-bold px-6 py-2 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95"><?php echo $action === 'edit' ? 'Perbarui' : 'Tambah'; ?></button>
                 <a href="manage_contacts" class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold px-6 py-2 rounded-xl transition">Batal</a>
             </div>
         </form>
@@ -96,7 +96,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 </div>
 <?php else: ?>
 <div class="mb-6">
-    <a href="?action=add" class="inline-flex items-center bg-fun-blue hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95"><i class="fas fa-plus mr-2"></i>Tambah Kontak Baru</a>
+    <a href="?action=add" class="inline-flex items-center bg-fun-green hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95"><i class="fas fa-plus mr-2"></i>Tambah Kontak Baru</a>
 </div>
 <div class="bg-white rounded-3xl shadow-sm overflow-hidden border-b-4 border-gray-200">
     <div class="bg-gray-50 px-8 py-4 border-b">

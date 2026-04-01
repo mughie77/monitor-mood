@@ -93,7 +93,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 <?php endif; ?>
 
 <?php if ($is_form_view): // --- ADD/EDIT FORM VIEW --- ?>
-<div class="bg-white rounded-3xl shadow-sm overflow-hidden border-t-8 border-fun-purple max-w-2xl">
+<div class="bg-white rounded-3xl shadow-sm overflow-hidden border-t-8 border-fun-blue max-w-2xl">
     <div class="bg-gray-50 px-8 py-4 border-b">
         <h5 class="font-bold text-gray-700"><?php echo $action === 'edit' ? 'Ubah Siswa' : 'Tambah Siswa Baru'; ?></h5>
     </div>
@@ -105,29 +105,29 @@ if ($action === 'edit' && isset($_GET['id'])) {
 
             <div>
                 <label for="full_name" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
-                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="full_name" name="full_name" value="<?php echo htmlspecialchars($student_data['full_name'] ?? ''); ?>" required>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="full_name" name="full_name" value="<?php echo htmlspecialchars($student_data['full_name'] ?? ''); ?>" required>
             </div>
              <div>
                 <label for="class" class="block text-sm font-semibold text-gray-700 mb-2">Kelas</label>
-                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="class" name="class" value="<?php echo htmlspecialchars($student_data['class'] ?? ''); ?>">
+                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="class" name="class" value="<?php echo htmlspecialchars($student_data['class'] ?? ''); ?>">
             </div>
             <div>
                 <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">Nama Pengguna</label>
-                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="username" name="username" value="<?php echo htmlspecialchars($student_data['username'] ?? ''); ?>" required>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="username" name="username" value="<?php echo htmlspecialchars($student_data['username'] ?? ''); ?>" required>
             </div>
             <div>
                 <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                <input type="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="email" name="email" value="<?php echo htmlspecialchars($student_data['email'] ?? ''); ?>" required>
+                <input type="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="email" name="email" value="<?php echo htmlspecialchars($student_data['email'] ?? ''); ?>" required>
             </div>
             <div>
                 <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">Kata Sandi</label>
-                <input type="password" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="password" name="password" <?php echo $action === 'add' ? 'required' : ''; ?>>
+                <input type="password" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="password" name="password" <?php echo $action === 'add' ? 'required' : ''; ?>>
                 <?php if ($action === 'edit'): ?>
                     <p class="mt-1 text-xs text-gray-400 italic">Biarkan kosong untuk mempertahankan kata sandi saat ini.</p>
                 <?php endif; ?>
             </div>
             <div class="flex gap-3 pt-4">
-                <button type="submit" class="bg-fun-purple hover:bg-opacity-90 text-white font-bold px-6 py-2 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95"><?php echo $action === 'edit' ? 'Perbarui Siswa' : 'Tambah Siswa'; ?></button>
+                <button type="submit" class="bg-fun-blue hover:bg-opacity-90 text-white font-bold px-6 py-2 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95"><?php echo $action === 'edit' ? 'Perbarui Siswa' : 'Tambah Siswa'; ?></button>
                 <a href="manage_students" class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold px-6 py-2 rounded-xl transition">Batal</a>
             </div>
         </form>
@@ -135,7 +135,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
 </div>
 <?php else: // --- LIST VIEW --- ?>
 <div class="mb-6">
-    <a href="?action=add" class="inline-flex items-center bg-fun-blue hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95"><i class="fas fa-plus mr-2"></i>Tambah Siswa Baru</a>
+    <a href="?action=add" class="inline-flex items-center bg-fun-green hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95"><i class="fas fa-plus mr-2"></i>Tambah Siswa Baru</a>
 </div>
 <div class="bg-white rounded-3xl shadow-sm overflow-hidden border-b-4 border-gray-200">
     <div class="bg-gray-50 px-8 py-4 border-b">

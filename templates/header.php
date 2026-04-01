@@ -17,9 +17,9 @@ start_session();
                     colors: {
                         'fun-pink': '#FF6B6B',
                         'fun-yellow': '#FFD93D',
-                        'fun-blue': '#6BCB77',
+                        'fun-green': '#6BCB77',
                         'fun-orange': '#FF9248',
-                        'fun-purple': '#4D96FF',
+                        'fun-blue': '#4D96FF',
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],

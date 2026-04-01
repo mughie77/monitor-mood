@@ -25,9 +25,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     colors: {
                         'fun-pink': '#FF6B6B',
                         'fun-yellow': '#FFD93D',
-                        'fun-blue': '#6BCB77',
+                        'fun-green': '#6BCB77',
                         'fun-orange': '#FF9248',
-                        'fun-purple': '#4D96FF',
+                        'fun-blue': '#4D96FF',
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -47,7 +47,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <div class="flex flex-col md:flex-row min-h-screen" id="wrapper">
     <!-- Sidebar -->
-    <div id="sidebar-wrapper" class="hidden md:block bg-fun-purple text-white w-full md:w-64 flex-shrink-0 transition-all duration-300">
+    <div id="sidebar-wrapper" class="hidden md:block bg-fun-blue text-white w-full md:w-64 flex-shrink-0 transition-all duration-300">
         <div class="p-6 text-2xl font-bold border-b border-white/10">Admin SI-SONYA</div>
         <div class="flex flex-col py-4">
             <a href="<?php echo base_url('admin/index'); ?>" class="px-6 py-3 flex items-center hover:bg-white/10 transition <?php echo ($current_page == 'index.php') ? 'bg-white/20' : ''; ?>">
@@ -87,9 +87,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Page Content -->
     <div id="page-content-wrapper" class="flex-grow flex flex-col min-h-screen overflow-x-hidden">
         <nav class="bg-white shadow-sm border-b px-6 py-4 flex items-center justify-between">
-            <button class="text-fun-purple md:hidden" id="menu-toggle"><i class="fas fa-bars text-xl"></i></button>
+            <button class="text-fun-blue md:hidden" id="menu-toggle"><i class="fas fa-bars text-xl"></i></button>
             <div class="hidden md:block"></div>
-            <div class="text-sm font-medium">Selamat Datang, <span class="text-fun-purple"><?php echo htmlspecialchars($full_name); ?></span>!</div>
+            <div class="text-sm font-medium">Selamat Datang, <span class="text-fun-blue"><?php echo htmlspecialchars($full_name); ?></span>!</div>
         </nav>
 
         <div class="p-6 md:p-8">

@@ -43,13 +43,13 @@ require_once 'templates/header.php';
         </div>
     </div>
     <!-- Rata-rata Mood Guru -->
-    <div class="bg-white rounded-3xl p-6 shadow-sm border-b-4 border-fun-blue">
+    <div class="bg-white rounded-3xl p-6 shadow-sm border-b-4 border-fun-green">
         <div class="flex justify-between items-start">
             <div>
                 <h5 class="text-gray-500 font-semibold mb-1">Mood Guru <span class="period-text block text-xs font-normal"></span></h5>
                 <p class="text-2xl font-bold text-gray-800" id="avg-teacher-mood">--</p>
             </div>
-            <div class="bg-green-100 p-3 rounded-2xl text-fun-blue text-xl">
+            <div class="bg-green-100 p-3 rounded-2xl text-fun-green text-xl">
                 <i class="fas fa-smile-beam"></i>
             </div>
         </div>
@@ -60,7 +60,7 @@ require_once 'templates/header.php';
     <div class="lg:col-span-2">
         <div class="bg-white rounded-3xl shadow-sm overflow-hidden">
             <div class="px-6 py-4 border-b flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="font-bold text-gray-700"><i class="fas fa-chart-line mr-2 text-fun-purple"></i> Analisis Suasana Hati</div>
+                <div class="font-bold text-gray-700"><i class="fas fa-chart-line mr-2 text-fun-blue"></i> Analisis Suasana Hati</div>
                 <div class="flex bg-gray-100 p-1 rounded-xl" role="group">
                     <button type="button" class="px-4 py-1.5 text-xs font-bold rounded-lg transition active-filter" id="filter-daily">7 Hari</button>
                     <button type="button" class="px-4 py-1.5 text-xs font-bold rounded-lg transition text-gray-500 hover:text-gray-700" id="filter-monthly">12 Bulan</button>

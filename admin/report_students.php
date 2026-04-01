@@ -45,7 +45,7 @@ $result = $stmt->get_result();
 <h1 class="text-3xl font-bold text-gray-800 mb-8">Laporan Mood Siswa</h1>
 
 <!-- Filter Form -->
-<div class="bg-white rounded-3xl shadow-sm overflow-hidden border-t-8 border-fun-purple mb-8">
+<div class="bg-white rounded-3xl shadow-sm overflow-hidden border-t-8 border-fun-blue mb-8">
     <div class="bg-gray-50 px-8 py-4 border-b">
         <h5 class="font-bold text-gray-700">Filter Laporan</h5>
     </div>
@@ -53,13 +53,13 @@ $result = $stmt->get_result();
         <form action="report_students.php" method="GET" class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
             <div>
                 <label for="start_date" class="block text-sm font-semibold text-gray-700 mb-2">Tanggal Mulai</label>
-                <input type="date" class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="start_date" name="start_date" value="<?php echo htmlspecialchars($start_date ?? ''); ?>">
+                <input type="date" class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="start_date" name="start_date" value="<?php echo htmlspecialchars($start_date ?? ''); ?>">
             </div>
             <div>
                 <label for="end_date" class="block text-sm font-semibold text-gray-700 mb-2">Tanggal Selesai</label>
-                <input type="date" class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-purple focus:border-transparent outline-none transition" id="end_date" name="end_date" value="<?php echo htmlspecialchars($end_date ?? date('Y-m-d')); ?>">
+                <input type="date" class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-fun-blue focus:border-transparent outline-none transition" id="end_date" name="end_date" value="<?php echo htmlspecialchars($end_date ?? date('Y-m-d')); ?>">
             </div>
-            <button type="submit" class="bg-fun-purple hover:bg-opacity-90 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95">
+            <button type="submit" class="bg-fun-blue hover:bg-opacity-90 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95">
                 Filter
             </button>
         </form>
@@ -69,7 +69,7 @@ $result = $stmt->get_result();
 <div class="bg-white rounded-3xl shadow-sm overflow-hidden border-b-4 border-gray-200">
     <div class="bg-gray-50 px-8 py-4 border-b">
         <h5 class="font-bold text-gray-700">
-            Daftar Semua Entri <?php if($start_date && $end_date) echo "<span class='text-fun-purple font-normal ml-2'>dari " . htmlspecialchars($start_date) . " hingga " . htmlspecialchars($end_date) . "</span>"; ?>
+            Daftar Semua Entri <?php if($start_date && $end_date) echo "<span class='text-fun-blue font-normal ml-2'>dari " . htmlspecialchars($start_date) . " hingga " . htmlspecialchars($end_date) . "</span>"; ?>
         </h5>
     </div>
     <div class="overflow-x-auto">

@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const apiResponse = await response.json();
             const { chartData, summary, range_start, range_end, bullyingChartData } = apiResponse;
 
-            const activeFilterButton = document.querySelector(`.btn-group .btn#filter-${filter}`);
+            const activeFilterButton = document.getElementById(`filter-${filter}`);
             if (summary && activeFilterButton) {
                 updateDashboardSummaries(summary, activeFilterButton);
             }
@@ -103,11 +103,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    const filterButtons = document.querySelectorAll('.btn-group .btn');
+    const filterButtons = [
+        document.getElementById('filter-daily'),
+        document.getElementById('filter-monthly'),
+        document.getElementById('filter-yearly')
+    ];
     filterButtons.forEach(button => {
+        if (!button) return;
         button.addEventListener('click', function() {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active-filter');
+                btn.classList.add('text-gray-500', 'hover:text-gray-700');
+            });
+            this.classList.add('active-filter');
+            this.classList.remove('text-gray-500', 'hover:text-gray-700');
             const filter = this.id.replace('filter-', '');
             renderCharts(filter);
         });
